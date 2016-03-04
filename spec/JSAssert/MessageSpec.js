@@ -60,7 +60,7 @@ describe("Message", () => {
     });
 
     it("casts native Date object value to string", () => {
-        expect(Message.castToString(new Date("2015-01-10"))).toBe("Date[\"Sat Jan 10 2015 01:00:00 GMT+0100 (CET)\"]");
+        expect(Message.castToString(new Date(Date.UTC(2015, 1, 10, 0, 0, 0)))).toBe("Date[\"Tue, 10 Feb 2015 00:00:00 GMT\"]");
     });
 
     it("casts native RegExp object value to string", () => {

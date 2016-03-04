@@ -74,7 +74,7 @@ export default class Message
             }
 
             if (value instanceof Date) {
-                return `Date["${value.toString()}"]`;
+                return `Date["${value.toUTCString()}"]`;
             }
 
             if (value instanceof RegExp) {
