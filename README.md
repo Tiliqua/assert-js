@@ -2,6 +2,8 @@
 
 Assertion library written in ES6 for nodejs.
 
+> This package is still under development. Before release of version ``1.0.0`` there might be some BC Breakes.  
+
 ## Installation
 
 ```
