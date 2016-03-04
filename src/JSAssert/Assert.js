@@ -70,6 +70,20 @@ export default class Assert
     }
 
     /**
+     * @param {string} expectedFunctionName
+     * @param {object} objectValue
+     */
+    static hasFunction(expectedFunctionName, objectValue)
+    {
+        Assert.string(expectedFunctionName);
+        Assert.object(objectValue);
+
+        if (typeof objectValue[expectedFunctionName] !== 'function') {
+            throw Message.expected(`object to has function "${expectedFunctionName}"`, objectValue);
+        }
+    }
+
+    /**
      * @param {array} arrayValue
      */
     static array(arrayValue)

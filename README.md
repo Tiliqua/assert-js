@@ -140,6 +140,17 @@ Assert.integer(objectValue);
 ```
 
 ```js
+Assert.hasFunction(expectedFunctionName, objectValue)
+
+// example
+
+var objectValue = {
+    testFunction: () => { return 'test'; }
+};
+Assert.integer("testFunction", objectValue);
+```
+
+```js
 Assert.isFunction(functionValue)
 
 // example

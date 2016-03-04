@@ -25,8 +25,8 @@ var Assert = function () {
         key: 'instanceOf',
 
         /**
-         * @param objectValue
-         * @param instance
+         * @param {object} objectValue
+         * @param {function} instance
          */
         value: function instanceOf(objectValue, instance) {
             if ((typeof objectValue === 'undefined' ? 'undefined' : _typeof(objectValue)) !== 'object') {
@@ -39,7 +39,7 @@ var Assert = function () {
         }
 
         /**
-         * @param integerValue
+         * @param {int} integerValue
          */
 
     }, {
@@ -51,7 +51,7 @@ var Assert = function () {
         }
 
         /**
-         * @param numberValue
+         * @param {number} numberValue
          */
 
     }, {
@@ -63,7 +63,7 @@ var Assert = function () {
         }
 
         /**
-         * @param stringValue
+         * @param {string} stringValue
          */
 
     }, {
@@ -75,7 +75,7 @@ var Assert = function () {
         }
 
         /**
-         * @param booleanValue
+         * @param {boolean} booleanValue
          */
 
     }, {
@@ -87,7 +87,7 @@ var Assert = function () {
         }
 
         /**
-         * @param objectValue
+         * @param {object} objectValue
          */
 
     }, {
@@ -99,7 +99,23 @@ var Assert = function () {
         }
 
         /**
-         * @param arrayValue
+         * @param {string} expectedFunctionName
+         * @param {object} objectValue
+         */
+
+    }, {
+        key: 'hasFunction',
+        value: function hasFunction(expectedFunctionName, objectValue) {
+            Assert.string(expectedFunctionName);
+            Assert.object(objectValue);
+
+            if (typeof objectValue[expectedFunctionName] !== 'function') {
+                throw _Message2.default.expected('object to has function "' + expectedFunctionName + '"', objectValue);
+            }
+        }
+
+        /**
+         * @param {array} arrayValue
          */
 
     }, {
@@ -111,7 +127,7 @@ var Assert = function () {
         }
 
         /**
-         * @param functionValue
+         * @param {function} functionValue
          */
 
     }, {
@@ -195,7 +211,7 @@ var Assert = function () {
         }
 
         /**
-         * @param value
+         * @param {*} value
          */
 
     }, {
@@ -207,7 +223,7 @@ var Assert = function () {
         }
 
         /**
-         * @param integerValue
+         * @param {int} integerValue
          */
 
     }, {
@@ -217,6 +233,20 @@ var Assert = function () {
 
             if (integerValue % 2 !== 1) {
                 throw _Message2.default.expected("odd number", integerValue);
+            }
+        }
+
+        /**
+         * @param {int} integerValue
+         */
+
+    }, {
+        key: 'evenNumber',
+        value: function evenNumber(integerValue) {
+            this.integer(integerValue);
+
+            if (integerValue % 2 !== 0) {
+                throw _Message2.default.expected("even number", integerValue);
             }
         }
     }]);

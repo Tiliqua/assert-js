@@ -67,7 +67,7 @@ describe("Assert", () => {
         expect(() => {Assert.boolean(() => {})}).toThrow('Expected boolean but got "function[function () {}]".');
     });
 
-    it ("asserts boolean", () => {
+    it ("asserts object", () => {
         Assert.object({});
         Assert.object(new String("test"));
     });
@@ -76,6 +76,18 @@ describe("Assert", () => {
         expect(() => {Assert.object(123)}).toThrow('Expected object but got "int[123]".');
         expect(() => {Assert.object(1.23)}).toThrow('Expected object but got "float[1.23]".');
         expect(() => {Assert.object(() => {})}).toThrow('Expected object but got "function[function () {}]".');
+    });
+
+    it ("asserts has function on anonymous object", () => {
+        Assert.hasFunction("test", {test: () => {}});
+    });
+
+    it ("asserts has function on object", () => {
+        Assert.hasFunction("concat", new String("test"));
+    });
+
+    it ("throws error when asserting that object has function that he does not have", () => {
+        expect(() => {Assert.hasFunction("test", new String("test"))}).toThrow(`Expected object to has function "test" but got "String["test"]".`);
     });
 
     it ("asserts function", () => {
