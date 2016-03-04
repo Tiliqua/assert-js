@@ -30,10 +30,17 @@ describe("Assert", () => {
         Assert.oddNumber(3);
     });
 
-    it ("asserts odd number", () => {
+    it ("throws error when asserting non odd number as odd", () => {
         expect(() => {Assert.oddNumber(4)}).toThrow('Expected odd number but got "int[4]".');
     });
 
+    it ("asserts even number", () => {
+        Assert.evenNumber(4);
+    });
+
+    it ("throws error when asserting non even number as even", () => {
+        expect(() => {Assert.evenNumber(3)}).toThrow('Expected even number but got "int[3]".');
+    });
 
     it ("asserts strings", () => {
         Assert.string("string");

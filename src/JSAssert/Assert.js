@@ -156,4 +156,16 @@ export default class Assert
             throw Message.expected("odd number", integerValue);
         }
     }
+
+    /**
+     * @param {int} integerValue
+     */
+    static evenNumber(integerValue)
+    {
+        this.integer(integerValue);
+
+        if ((integerValue % 2) !== 0) {
+            throw Message.expected("even number", integerValue);
+        }
+    }
 }

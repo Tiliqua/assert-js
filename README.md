@@ -95,6 +95,15 @@ Assert.oddNumber(integerValue);
 ```
 
 ```js
+Assert.evenNumber(integerValue)
+
+// example
+
+var integerValue = 4;
+Assert.evenNumber(integerValue);
+```
+
+```js
 Assert.greaterThan(requiredTreshold, integerValue)
 
 // example
