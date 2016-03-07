@@ -104,7 +104,7 @@ Assert.evenNumber(integerValue);
 ```
 
 ```js
-Assert.greaterThan(requiredTreshold, integerValue)
+Assert.greaterThan(expected, integerValue)
 
 // example
 

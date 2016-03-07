@@ -104,16 +104,16 @@ export default class Assert
     }
 
     /**
-     * @param {int} requiredTreshold
+     * @param {int} expected
      * @param {int} integerValue
      */
-    static greaterThan(requiredTreshold, integerValue)
+    static greaterThan(expected, integerValue)
     {
-        Assert.number(requiredTreshold);
+        Assert.number(expected);
         Assert.number(integerValue);
 
-        if (integerValue <= requiredTreshold) {
-            throw `Expected value ${integerValue} to be greater than ${requiredTreshold}`;
+        if (integerValue <= expected) {
+            throw `Expected value ${integerValue} to be greater than ${expected}`;
         }
     }
 
