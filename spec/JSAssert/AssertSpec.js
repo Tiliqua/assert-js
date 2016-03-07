@@ -108,6 +108,30 @@ describe("Assert", () => {
         expect(() => {Assert.greaterThan(10, 1)}).toThrow('Expected value 1 to be greater than 10');
     });
 
+    it ("asserts values greater than or equal", () => {
+        Assert.greaterThanOrEqual(10, 10);
+    });
+
+    it ("throws error when asserting value less than or equal", () => {
+        expect(() => {Assert.greaterThanOrEqual(10, 1)}).toThrow('Expected value 1 to be greater than 10 or equal');
+    });
+
+    it ("asserts values less than", () => {
+        Assert.lessThan(10, 1);
+    });
+
+    it ("throws error when asserting value greater than", () => {
+        expect(() => {Assert.lessThan(10, 100)}).toThrow('Expected value 100 to be less than 10');
+    });
+
+    it ("asserts values less than or equal", () => {
+        Assert.lessThanOrEqual(10, 10);
+    });
+
+    it ("throws error when asserting value greater than or equal", () => {
+        expect(() => {Assert.lessThanOrEqual(10, 100)}).toThrow('Expected value 100 to be less than 10 or equal');
+    });
+
     it ("asserts array", () => {
         Assert.array(new Array(5));
         Assert.array(['test1', 'test2']);

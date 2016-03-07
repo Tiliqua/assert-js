@@ -104,16 +104,58 @@ export default class Assert
     }
 
     /**
-     * @param {int} requiredTreshold
+     * @param {int} expected
      * @param {int} integerValue
      */
-    static greaterThan(requiredTreshold, integerValue)
+    static greaterThan(expected, integerValue)
     {
-        Assert.number(requiredTreshold);
+        Assert.number(expected);
         Assert.number(integerValue);
 
-        if (integerValue <= requiredTreshold) {
-            throw `Expected value ${integerValue} to be greater than ${requiredTreshold}`;
+        if (integerValue <= expected) {
+            throw `Expected value ${integerValue} to be greater than ${expected}`;
+        }
+    }
+
+    /**
+     * @param {int} expected
+     * @param {int} integerValue
+     */
+    static greaterThanOrEqual(expected, integerValue)
+    {
+        Assert.number(expected);
+        Assert.number(integerValue);
+
+        if (integerValue < expected) {
+            throw `Expected value ${integerValue} to be greater than ${expected} or equal`;
+        }
+    }
+
+    /**
+     * @param {int} expected
+     * @param {int} integerValue
+     */
+    static lessThan(expected, integerValue)
+    {
+        Assert.number(expected);
+        Assert.number(integerValue);
+
+        if (integerValue >= expected) {
+            throw `Expected value ${integerValue} to be less than ${expected}`;
+        }
+    }
+
+    /**
+     * @param {int} expected
+     * @param {int} integerValue
+     */
+    static lessThanOrEqual(expected, integerValue)
+    {
+        Assert.number(expected);
+        Assert.number(integerValue);
+
+        if (integerValue > expected) {
+            throw `Expected value ${integerValue} to be less than ${expected} or equal`;
         }
     }
 

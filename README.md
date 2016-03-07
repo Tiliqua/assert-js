@@ -104,12 +104,39 @@ Assert.evenNumber(integerValue);
 ```
 
 ```js
-Assert.greaterThan(requiredTreshold, integerValue)
+Assert.greaterThan(expected, integerValue)
 
 // example
 
 var integerValue = 0;
 Assert.greaterThan(1, integerValue)
+```
+
+```js
+Assert.greaterThanOrEqual(expected, integerValue)
+
+// example
+
+var integerValue = 1;
+Assert.greaterThanOrEqual(1, integerValue)
+```
+
+```js
+Assert.lessThan(expected, integerValue)
+
+// example
+
+var integerValue = 1;
+Assert.lessThan(10, integerValue)
+```
+
+```js
+Assert.lessThanOrEqual(expected, integerValue)
+
+// example
+
+var integerValue = 1;
+Assert.lessThanOrEqual(1, integerValue)
 ```
 
 ```js
