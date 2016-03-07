@@ -118,7 +118,7 @@ Assert.greaterThanOrEqual(expected, integerValue)
 // example
 
 var integerValue = 1;
-Assert.greaterThan(1, integerValue)
+Assert.greaterThanOrEqual(1, integerValue)
 ```
 
 ```js
@@ -127,7 +127,7 @@ Assert.lessThan(expected, integerValue)
 // example
 
 var integerValue = 1;
-Assert.greaterThan(10, integerValue)
+Assert.lessThan(10, integerValue)
 ```
 
 ```js
@@ -136,7 +136,7 @@ Assert.lessThanOrEqual(expected, integerValue)
 // example
 
 var integerValue = 1;
-Assert.greaterThan(1, integerValue)
+Assert.lessThanOrEqual(1, integerValue)
 ```
 
 ```js
