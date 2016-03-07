@@ -108,6 +108,15 @@ describe("Assert", () => {
         expect(() => {Assert.greaterThan(10, 1)}).toThrow('Expected value 1 to be greater than 10');
     });
 
+    it ("asserts values greater than or equal", () => {
+        Assert.greaterThanOrEqual(10, 10);
+    });
+
+    it ("throws error when asserting value lower than", () => {
+        expect(() => {Assert.greaterThanOrEqual(10, 1)}).toThrow('Expected value 1 to be greater than 10 or equal');
+    });
+
+
     it ("asserts array", () => {
         Assert.array(new Array(5));
         Assert.array(['test1', 'test2']);

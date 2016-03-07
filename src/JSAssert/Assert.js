@@ -118,6 +118,20 @@ export default class Assert
     }
 
     /**
+     * @param {int} expected
+     * @param {int} integerValue
+     */
+    static greaterThanOrEqual(expected, integerValue)
+    {
+        Assert.number(expected);
+        Assert.number(integerValue);
+
+        if (integerValue < expected) {
+            throw `Expected value ${integerValue} to be greater than ${expected} or equal`;
+        }
+    }
+
+    /**
      * @param {array} arrayValue
      * @param {function} expectedInstance
      */
