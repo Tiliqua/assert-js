@@ -132,6 +132,34 @@ export default class Assert
     }
 
     /**
+     * @param {int} expected
+     * @param {int} integerValue
+     */
+    static lessThan(expected, integerValue)
+    {
+        Assert.number(expected);
+        Assert.number(integerValue);
+
+        if (integerValue >= expected) {
+            throw `Expected value ${integerValue} to be less than ${expected}`;
+        }
+    }
+
+    /**
+     * @param {int} expected
+     * @param {int} integerValue
+     */
+    static lessThanOrEqual(expected, integerValue)
+    {
+        Assert.number(expected);
+        Assert.number(integerValue);
+
+        if (integerValue > expected) {
+            throw `Expected value ${integerValue} to be less than ${expected} or equal`;
+        }
+    }
+
+    /**
      * @param {array} arrayValue
      * @param {function} expectedInstance
      */
