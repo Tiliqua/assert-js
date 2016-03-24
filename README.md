@@ -2,7 +2,13 @@
 
 Assertion library written in ES6 for nodejs.
 
-> This package is still under development. Before release of version ``1.0.0`` there might be some BC Breakes.  
+> This package is still under development. Before release of version ``1.0.0`` there might be some BC Brakes.  
+
+## Why? 
+
+This library was made to simplify  and make testing easier. 
+In order to make sure that state is always consistent and predictable you can use strongly typed language
+or write unit tests. 
 
 ## Installation
 
