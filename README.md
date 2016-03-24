@@ -2,13 +2,13 @@
 
 Assertion library written in ES6 for nodejs.
 
-> This package is still under development. Before release of version ``1.0.0`` there might be some BC Brakes.  
+> This package is still under development. Before release of version ``1.0.0`` there might be some BC Brakes.
 
-## Why? 
+## Why?
 
-This library was made to simplify  and make testing easier. 
+This library was made to simplify variable types/values assertion and make testing easier.
 In order to make sure that state is always consistent and predictable you can use strongly typed language
-or write unit tests. 
+or write unit tests.
 
 ## Installation
 
@@ -219,3 +219,17 @@ var arrayValue = [1, 2, 3];
 Assert.notEmpty(0, arrayValue);
 ```
 
+### Custom error messages
+
+In order to setup custom error message just pass it as a last argument to any assertion function.
+
+```js
+Assert.string(1234, 'custom error message');
+```
+
+In order to use expected and received value in message just use ES6 string template syntax.
+
+```js
+Assert.string(1234, 'Expected ${expected} but got ${received}');
+// it will throw "Expected string but got int[1234]"
+```

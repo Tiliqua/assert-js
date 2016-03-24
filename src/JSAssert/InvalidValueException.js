@@ -1,16 +1,25 @@
 'use strict';
 
+import Assert from './Assert';
+import MessageFactory from './MessageFactory';
 import ValueConverter from './ValueConverter';
 
 export default class InvalidValueException
 {
-    static expected(type, value)
+    /**
+     * @param {string} type
+     * @param {*} value
+     * @param {string} [message]
+     * @returns {string}
+     */
+    static expected(type, value, message = "")
     {
-        return `Expected ${type} but got "${ValueConverter.toString(value)}".`
-    }
+        Assert.string(message);
 
-    static expectedInstanceOf(instance, value)
-    {
-        return `Expected instance of \"${instance}\" but got "${ValueConverter.toString(value)}".`
+        if (message.length) {
+            return MessageFactory.create(message, {expected: type, received: ValueConverter.toString(value)});
+        }
+
+        return `Expected ${type} but got "${ValueConverter.toString(value)}".`
     }
 }
