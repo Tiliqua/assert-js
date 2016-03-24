@@ -1,18 +1,12 @@
 'use strict';
 
-export default class Message
+export default class ValueConverter
 {
-    static expected(type, value)
-    {
-        return `Expected ${type} but got "${this.castToString(value)}".`
-    }
-
-    static expectedInstanceOf(instance, value)
-    {
-        return `Expected instance of \"${instance}\" but got "${this.castToString(value)}".`
-    }
-
-    static castToString(value)
+    /**
+     * @param {*} value
+     * @returns {string}
+     */
+    static toString(value)
     {
         if (typeof value === 'string') {
             return `string["${value}"]`;
