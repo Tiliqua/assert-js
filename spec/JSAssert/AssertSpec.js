@@ -10,8 +10,13 @@ describe("Assert", () => {
         expect(() => {Assert.instanceOf(new Number(2), String)}).toThrow('Expected instance of "String" but got "Number:int[2]".');
     });
 
+    it ("throws error when custom error message in instanceOf assertion is not valid string", () => {
+        expect(() => {Assert.instanceOf(1, String, new Number(1))}).toThrow('Custom error message passed to Assert.instanceOf needs to be a valid string.');
+    });
+
     it ("throws error when compared different instances", () => {
         expect(() => {Assert.instanceOf(new Number(2), String)}).toThrow('Expected instance of "String" but got "Number:int[2]".');
+        expect(() => {Assert.instanceOf(new Number(2), String, "custom message")}).toThrow('custom message');
     });
 
     it ("asserts integers", () => {
@@ -24,6 +29,7 @@ describe("Assert", () => {
         expect(() => {Assert.integer(1.23)}).toThrow('Expected integer but got "float[1.23]".');
         expect(() => {Assert.integer(true)}).toThrow('Expected integer but got "boolean[true]".');
         expect(() => {Assert.integer(() => {})}).toThrow('Expected integer but got "function[function () {}]".');
+        expect(() => {Assert.integer(() => {}, "custom message")}).toThrow('custom message');
     });
 
     it ("asserts odd number", () => {
@@ -32,6 +38,7 @@ describe("Assert", () => {
 
     it ("throws error when asserting non odd number as odd", () => {
         expect(() => {Assert.oddNumber(4)}).toThrow('Expected odd number but got "int[4]".');
+        expect(() => {Assert.oddNumber(4, "custom message")}).toThrow('custom message');
     });
 
     it ("asserts even number", () => {
@@ -40,6 +47,7 @@ describe("Assert", () => {
 
     it ("throws error when asserting non even number as even", () => {
         expect(() => {Assert.evenNumber(3)}).toThrow('Expected even number but got "int[3]".');
+        expect(() => {Assert.evenNumber(3, "custom message")}).toThrow('custom message');
     });
 
     it ("asserts strings", () => {
@@ -53,6 +61,11 @@ describe("Assert", () => {
         expect(() => {Assert.string(1.23)}).toThrow('Expected string but got "float[1.23]".');
         expect(() => {Assert.string(true)}).toThrow('Expected string but got "boolean[true]".');
         expect(() => {Assert.string(() => {})}).toThrow('Expected string but got "function[function () {}]".');
+        expect(() => {Assert.string(() => {}, "custom message")}).toThrow('custom message');
+    });
+
+    it ("throws error when custom message is not valid string", () => {
+        expect(() => {Assert.string("", new Number(12))}).toThrow('Custom error message passed to Assert.string needs to be a valid string.');
     });
 
     it ("asserts boolean", () => {
@@ -65,6 +78,7 @@ describe("Assert", () => {
         expect(() => {Assert.boolean(new Array([]))}).toThrow('Expected boolean but got "array[length: 1]".');
         expect(() => {Assert.boolean(1.23)}).toThrow('Expected boolean but got "float[1.23]".');
         expect(() => {Assert.boolean(() => {})}).toThrow('Expected boolean but got "function[function () {}]".');
+        expect(() => {Assert.boolean(() => {}, 'custom message')}).toThrow('custom message');
     });
 
     it ("asserts object", () => {
@@ -76,6 +90,7 @@ describe("Assert", () => {
         expect(() => {Assert.object(123)}).toThrow('Expected object but got "int[123]".');
         expect(() => {Assert.object(1.23)}).toThrow('Expected object but got "float[1.23]".');
         expect(() => {Assert.object(() => {})}).toThrow('Expected object but got "function[function () {}]".');
+        expect(() => {Assert.object(() => {}, 'custom message')}).toThrow('custom message');
     });
 
     it ("asserts has function on anonymous object", () => {
@@ -88,6 +103,7 @@ describe("Assert", () => {
 
     it ("throws error when asserting that object has function that he does not have", () => {
         expect(() => {Assert.hasFunction("test", new String("test"))}).toThrow(`Expected object to has function "test" but got "String["test"]".`);
+        expect(() => {Assert.hasFunction("test", new String("test"), "custom message")}).toThrow(`custom message`);
     });
 
     it ("asserts function", () => {
@@ -98,6 +114,7 @@ describe("Assert", () => {
         expect(() => {Assert.isFunction(123)}).toThrow('Expected function but got "int[123]".');
         expect(() => {Assert.isFunction(new Array([]))}).toThrow('Expected function but got "array[length: 1]".');
         expect(() => {Assert.isFunction(1.23)}).toThrow('Expected function but got "float[1.23]".');
+        expect(() => {Assert.isFunction(1.23, 'custom message')}).toThrow('custom message');
     });
 
     it ("asserts values greater than", () => {
@@ -106,6 +123,7 @@ describe("Assert", () => {
 
     it ("throws error when asserting value lower than", () => {
         expect(() => {Assert.greaterThan(10, 1)}).toThrow('Expected value 1 to be greater than 10');
+        expect(() => {Assert.greaterThan(10, 1, 'custom message')}).toThrow('custom message');
     });
 
     it ("asserts values greater than or equal", () => {
@@ -114,6 +132,7 @@ describe("Assert", () => {
 
     it ("throws error when asserting value less than or equal", () => {
         expect(() => {Assert.greaterThanOrEqual(10, 1)}).toThrow('Expected value 1 to be greater than 10 or equal');
+        expect(() => {Assert.greaterThanOrEqual(10, 1, 'custom message')}).toThrow('custom message');
     });
 
     it ("asserts values less than", () => {
@@ -122,6 +141,7 @@ describe("Assert", () => {
 
     it ("throws error when asserting value greater than", () => {
         expect(() => {Assert.lessThan(10, 100)}).toThrow('Expected value 100 to be less than 10');
+        expect(() => {Assert.lessThan(10, 100, 'custom message')}).toThrow('custom message');
     });
 
     it ("asserts values less than or equal", () => {
@@ -130,16 +150,17 @@ describe("Assert", () => {
 
     it ("throws error when asserting value greater than or equal", () => {
         expect(() => {Assert.lessThanOrEqual(10, 100)}).toThrow('Expected value 100 to be less than 10 or equal');
+        expect(() => {Assert.lessThanOrEqual(10, 100, 'custom message')}).toThrow('custom message');
     });
 
     it ("asserts array", () => {
         Assert.array(new Array(5));
         Assert.array(['test1', 'test2']);
-
     });
 
     it ("throws error when asserting non array value as array", () => {
         expect(() => {Assert.array(123)}).toThrow('Expected array but got "int[123]".');
+        expect(() => {Assert.array(123, 'custom message')}).toThrow('custom message');
     });
 
     it ("asserts contains only specific instances in array", () => {
@@ -153,11 +174,12 @@ describe("Assert", () => {
     });
 
     it ("throws error when contains only does not assert on array", () => {
-        expect(() => {Assert.containsOnly(123)}).toThrow('Expected array but got "int[123]".');
+        expect(() => {Assert.containsOnly(123)}).toThrow('Assert.containsOnly require valid array, got "int[123]".');
     });
 
     it ("throws error when contains only has at least one non object element", () => {
         expect(() => {Assert.containsOnly([new String("test"), 132], String)}).toThrow('Expected instance of "String" but got "int[132]".');
+        expect(() => {Assert.containsOnly([new String("test"), 132], String, 'custom message')}).toThrow('custom message');
     });
 
     it ("throws error when contains only has at least one non expected instance element", () => {
@@ -176,6 +198,7 @@ describe("Assert", () => {
 
     it ("throws error when expected count different than array count", () => {
         expect(() => {Assert.count(3, [new String("test")])}).toThrow('Expected count 3, got 1');
+        expect(() => {Assert.count(3, [new String("test")], 'custom message')}).toThrow('custom message');
     });
 
     it ("asserts not empty value", () => {
@@ -184,5 +207,6 @@ describe("Assert", () => {
 
     it ("throws error when asserting empty string as non empty value", () => {
         expect(() => {Assert.notEmpty("")}).toThrow('Expected not empty value but got "string[""]".');
+        expect(() => {Assert.notEmpty("", 'custom message')}).toThrow('custom message');
     });
 });
