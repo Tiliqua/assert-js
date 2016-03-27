@@ -380,6 +380,26 @@ var Assert = function () {
                 throw _InvalidValueException2.default.expected("even number", integerValue, message);
             }
         }
+
+        /**
+         * @param {string} stringValue
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'jsonString',
+        value: function jsonString(stringValue) {
+            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+
+            this.string(stringValue);
+            this.string(message, "Custom error message passed to Assert.jsonString needs to be a valid string.");
+
+            try {
+                JSON.parse(stringValue);
+            } catch (e) {
+                throw _InvalidValueException2.default.expected("json string", stringValue, message);
+            }
+        }
     }]);
 
     return Assert;

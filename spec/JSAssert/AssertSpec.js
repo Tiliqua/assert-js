@@ -209,4 +209,13 @@ describe("Assert", () => {
         expect(() => {Assert.notEmpty("")}).toThrow('Expected not empty value but got "string[""]".');
         expect(() => {Assert.notEmpty("", 'custom message')}).toThrow('custom message');
     });
+    
+    it ("asserts json string", () => {
+        Assert.jsonString('{"key":"value"}');
+    });
+    
+    it ("throws error when expected json string is not valid", () => {
+        expect(() => {Assert.jsonString('{"key":value"}')}).toThrow('Expected json string but got "string["{"key":value"}"]".');
+        expect(() => {Assert.jsonString('{"key":value"}', "custom message")}).toThrow('custom message');
+    });
 });

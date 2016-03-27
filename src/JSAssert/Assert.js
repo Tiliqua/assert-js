@@ -279,4 +279,20 @@ export default class Assert
             throw InvalidValueException.expected("even number", integerValue, message);
         }
     }
+    
+    /**
+     * @param {string} stringValue
+     * @param {string} [message]
+     */
+    static jsonString(stringValue, message = "")
+    {
+        this.string(stringValue);
+        this.string(message, "Custom error message passed to Assert.jsonString needs to be a valid string.");
+
+        try {
+            JSON.parse(stringValue);
+        } catch (e) {
+            throw InvalidValueException.expected("json string", stringValue, message);
+        }
+    }
 }

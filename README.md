@@ -219,6 +219,15 @@ var arrayValue = [1, 2, 3];
 Assert.notEmpty(0, arrayValue);
 ```
 
+```js
+Assert.jsonString(value)
+
+// example
+
+var jsonStringValue = '{"key": "value"}';
+Assert.jsonString(jsonStringValue);
+```
+
 ### Custom error messages
 
 In order to setup custom error message just pass it as a last argument to any assertion function.
