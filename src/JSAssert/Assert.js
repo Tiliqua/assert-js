@@ -318,8 +318,8 @@ export default class Assert
     }
 
     /**
-     * @param urlValue
-     * @param message
+     * @param {string} urlValue
+     * @param {string} [message]
      */
     static url(urlValue, message = "")
     {
@@ -327,6 +327,19 @@ export default class Assert
 
         if (!regexp.test(urlValue)) {
             throw InvalidValueException.expected("valid url", urlValue, message);
+        }
+    }
+
+    /**
+     * @param {string} uuidValue
+     * @param {string} [$message]
+     */
+    static uuid(uuidValue, message = "")
+    {
+        let regexp = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+        if (!regexp.test(uuidValue)) {
+            throw InvalidValueException.expected("valid uuid", uuidValue, message);
         }
     }
 }

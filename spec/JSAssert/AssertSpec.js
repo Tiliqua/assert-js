@@ -259,4 +259,14 @@ describe("Assert", () => {
         expect(() => {Assert.url('http://')}).toThrow('Expected valid url but got "string["http://"]".');
         expect(() => {Assert.url('http://', "custom message")}).toThrow('custom message');
     });
+
+    it ("asserts uuid", () => {
+        Assert.uuid('5e8a2b26-1479-11e6-a148-3e1d05defe78'); // version 1
+        Assert.uuid('386f9c10-d886-49b4-8153-ba1873c684ed'); // version 4
+    });
+
+    it ("throws error when uuid is not valid", () => {
+        expect(() => {Assert.uuid('1234567890')}).toThrow('Expected valid uuid but got "string["1234567890"]".');
+        expect(() => {Assert.uuid('1234567890', "custom message")}).toThrow('custom message');
+    });
 });
