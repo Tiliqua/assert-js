@@ -225,4 +225,13 @@ describe("Assert", () => {
         expect(() => {Assert.jsonString('{"key":value"}')}).toThrow('Expected json string but got "string["{"key":value"}"]".');
         expect(() => {Assert.jsonString('{"key":value"}', "custom message")}).toThrow('custom message');
     });
+
+    it ("asserts email", () => {
+        Assert.email('norbert@orzechowicz.pl');
+    });
+
+    it ("throws error when email is not valid", () => {
+        expect(() => {Assert.email('not_valid_email@com')}).toThrow('Expected valid email address but got "string["not_valid_email@com"]".');
+        expect(() => {Assert.email('not_valid_email@com', "custom message")}).toThrow('custom message');
+    });
 });

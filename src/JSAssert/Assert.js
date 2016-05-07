@@ -300,4 +300,20 @@ export default class Assert
             throw InvalidValueException.expected("json string", stringValue, message);
         }
     }
+
+    /**
+     * @param {string} emailValue
+     * @param {string} [message]
+     */
+    static email(emailValue, message = "")
+    {
+        this.string(emailValue);
+        this.string(message, "Custom error message passed to Assert.jsonString needs to be a valid string.");
+
+        let regexp = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+
+        if (!regexp.test(emailValue)) {
+            throw InvalidValueException.expected("valid email address", emailValue, message);
+        }
+    }
 }
