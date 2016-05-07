@@ -1,0 +1,6 @@
+'use strict';
+
+class ObjectWithNoExportStub
+{
+    
+}
