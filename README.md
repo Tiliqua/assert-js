@@ -8,7 +8,8 @@ Assertion library written in ES6 for nodejs.
 
 This library was made to simplify variable types/values assertion and make testing easier.
 In order to make sure that state is always consistent and predictable you can use strongly typed language
-or write unit tests.
+or write unit tests. However you can cheat a bit by using libraries like this one. All you need to do is to 
+remember that check each argument with proper assertion.
 
 ## Installation
 
