@@ -228,6 +228,15 @@ var jsonStringValue = '{"key": "value"}';
 Assert.jsonString(jsonStringValue);
 ```
 
+```js
+Assert.email(value)
+
+// example
+
+var emailValue = 'norbert@orzechowicz.pl';
+Assert.jsonString(emailValue);
+```
+
 ### Custom error messages
 
 In order to setup custom error message just pass it as a last argument to any assertion function.
