@@ -6,10 +6,10 @@ export default class Assert
 {
     /**
      * @param {object} objectValue
-     * @param {function} instance
+     * @param {function} expectedInstance
      * @param {string} [message]
      */
-    static instanceOf(objectValue, instance, message = "")
+    static instanceOf(objectValue, expectedInstance, message = "")
     {
         this.string(message, "Custom error message passed to Assert.instanceOf needs to be a valid string.");
 
@@ -17,9 +17,14 @@ export default class Assert
             throw InvalidValueException.expected("object", objectValue, message);
         }
 
-        if (!(objectValue instanceof instance)) {
+        this.isFunction(
+            expectedInstance,
+            "Expected argument needs to be a valid class instead of that got \"${received}\". Most likely there is typo in class name or file with class is missing export declaration."
+        );
+
+        if (!(objectValue instanceof expectedInstance)) {
             throw InvalidValueException.expected(
-                instance.name,
+                expectedInstance.name,
                 objectValue,
                 message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\"."
             );
@@ -279,7 +284,7 @@ export default class Assert
             throw InvalidValueException.expected("even number", integerValue, message);
         }
     }
-    
+
     /**
      * @param {string} stringValue
      * @param {string} [message]

@@ -26,10 +26,10 @@ var Assert = function () {
 
         /**
          * @param {object} objectValue
-         * @param {function} instance
+         * @param {function} expectedInstance
          * @param {string} [message]
          */
-        value: function instanceOf(objectValue, instance) {
+        value: function instanceOf(objectValue, expectedInstance) {
             var message = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
 
             this.string(message, "Custom error message passed to Assert.instanceOf needs to be a valid string.");
@@ -38,8 +38,10 @@ var Assert = function () {
                 throw _InvalidValueException2.default.expected("object", objectValue, message);
             }
 
-            if (!(objectValue instanceof instance)) {
-                throw _InvalidValueException2.default.expected(instance.name, objectValue, message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\".");
+            this.isFunction(expectedInstance, "Expected argument needs to be a valid class instead of that got \"${received}\". Most likely there is typo in class name or file with class is missing export declaration.");
+
+            if (!(objectValue instanceof expectedInstance)) {
+                throw _InvalidValueException2.default.expected(expectedInstance.name, objectValue, message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\".");
             }
         }
 

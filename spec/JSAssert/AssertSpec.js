@@ -1,8 +1,15 @@
 import Assert from '../../src/JSAssert/Assert';
 
+import ObjectWithNoExportStub from './../Doubles/ObjectWithNoExportStub';
+
 describe("Assert", () => {
     it("compares instance of", () => {
         Assert.instanceOf(new String("string"), String);
+    });
+
+    it("compares instance of when object has no export", () => {
+        expect(() => { Assert.instanceOf(new String("test"), ObjectWithNoExportStub); })
+            .toThrow(`Expected argument needs to be a valid class instead of that got "object[{}]". Most likely there is typo in class name or file with class is missing export declaration.`);
     });
 
     it ("throws error when asserting instance of non object", () => {
@@ -209,11 +216,11 @@ describe("Assert", () => {
         expect(() => {Assert.notEmpty("")}).toThrow('Expected not empty value but got "string[""]".');
         expect(() => {Assert.notEmpty("", 'custom message')}).toThrow('custom message');
     });
-    
+
     it ("asserts json string", () => {
         Assert.jsonString('{"key":"value"}');
     });
-    
+
     it ("throws error when expected json string is not valid", () => {
         expect(() => {Assert.jsonString('{"key":value"}')}).toThrow('Expected json string but got "string["{"key":value"}"]".');
         expect(() => {Assert.jsonString('{"key":value"}', "custom message")}).toThrow('custom message');
