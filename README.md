@@ -237,6 +237,15 @@ var emailValue = 'norbert@orzechowicz.pl';
 Assert.jsonString(emailValue);
 ```
 
+```js
+Assert.url(value)
+
+// example
+
+var urlValue = 'https://github.com/Tiliqua/assert-js';
+Assert.url(urlValue);
+```
+
 ### Custom error messages
 
 In order to setup custom error message just pass it as a last argument to any assertion function.

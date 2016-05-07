@@ -234,4 +234,29 @@ describe("Assert", () => {
         expect(() => {Assert.email('not_valid_email@com')}).toThrow('Expected valid email address but got "string["not_valid_email@com"]".');
         expect(() => {Assert.email('not_valid_email@com', "custom message")}).toThrow('custom message');
     });
+
+    it ("asserts url", () => {
+        Assert.url('http://foo.com/blah_blah');
+        Assert.url('http://foo.com/blah_blah/');
+        Assert.url('http://foo.com/blah_blah_(wikipedia)');
+        Assert.url('http://foo.com/blah_blah_(wikipedia)_(again)');
+        Assert.url('http://www.example.com/wpstyle/?p=364');
+        Assert.url('https://www.example.com/foo/?bar=baz&inga=42&quux');
+        Assert.url('http://✪df.ws/123');
+        Assert.url('http://userid:password@example.com:8080');
+        Assert.url('http://userid:password@example.com:8080/');
+        Assert.url('http://userid@example.com');
+        Assert.url('http://userid@example.com/');
+        Assert.url('http://userid@example.com:8080/');
+        Assert.url('http://userid:password@example.com');
+        Assert.url('http://userid:password@example.com/');
+        Assert.url('http://142.42.1.1/');
+        Assert.url('http://foo.com/blah_(wikipedia)#cite-1');
+        Assert.url('http://foo.com/unicode_(✪)_in_parens');
+    });
+
+    it ("throws error when url is not valid", () => {
+        expect(() => {Assert.url('http://')}).toThrow('Expected valid url but got "string["http://"]".');
+        expect(() => {Assert.url('http://', "custom message")}).toThrow('custom message');
+    });
 });
