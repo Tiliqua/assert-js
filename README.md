@@ -246,6 +246,15 @@ var urlValue = 'https://github.com/Tiliqua/assert-js';
 Assert.url(urlValue);
 ```
 
+```js
+Assert.uuid(value)
+
+// example
+
+var uuidValue = '3e9009a0-4b2f-414e-bf02-ec0df56fc864';
+Assert.uuid(uuidValue);
+```
+
 ### Custom error messages
 
 In order to setup custom error message just pass it as a last argument to any assertion function.
