@@ -1,4 +1,4 @@
-import ValueConverter from '../../src/JSAssert/ValueConverter';
+import ValueConverter from '../../src/AssertJS/ValueConverter';
 
 describe("ValueConverter", () => {
     it("casts native string value to string", () => {
