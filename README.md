@@ -35,7 +35,7 @@ In order to execute tests run
 npm test
 ```
 
-Before commiting changes make sure that code is transpiled to ES5
+Before committing changes make sure that code is transpiled to ES5
 
 ```
 npm run build

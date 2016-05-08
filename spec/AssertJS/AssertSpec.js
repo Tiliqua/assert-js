@@ -1,4 +1,4 @@
-import Assert from '../../src/JSAssert/Assert';
+import Assert from '../../src/AssertJS/Assert';
 
 import ObjectWithNoExportStub from './../Doubles/ObjectWithNoExportStub';
 

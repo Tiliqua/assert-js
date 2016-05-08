@@ -1,4 +1,4 @@
-import MessageFactory from '../../src/JSAssert/MessageFactory';
+import MessageFactory from '../../src/AssertJS/MessageFactory';
 
 describe("MessageFactory", () => {
     it("builds message from template using es6 template syntax ", () => {
