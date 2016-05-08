@@ -1,5 +1,5 @@
 'use strict';
 
-var assert = require('./JSAssert/Assert').default;
+var assert = require('./AssertJS/Assert').default;
 
 module.exports = assert;
