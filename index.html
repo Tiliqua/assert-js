@@ -1,51 +1,104 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="stylesheets/prism/prism.css" media="screen">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>Assert.js  by Tiliqua</title>
-  </head>
+    <script src="javascripts/prism/prism.js"></script>
+    <script src="javascripts/main.js"></script>
+    <title>Assert.js by Tiliqua</title>
+</head>
 
-  <body>
-    <div id="container">
-      <div class="inner">
+<body>
+<div id="container">
+    <div class="inner">
 
         <header>
-          <h1>Assert.js </h1>
-          <h2>Assertion library for Javascript. </h2>
+            <h1>Assert.js</h1>
+            <h2>The assertion library for Javascript.</h2>
         </header>
 
         <section id="downloads" class="clearfix">
-          <a href="https://github.com/Tiliqua/assert-js/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/Tiliqua/assert-js/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/Tiliqua/assert-js" id="view-on-github" class="button"><span>View on GitHub</span></a>
+            <a href="https://github.com/Tiliqua/assert-js" id="view-on-github" class="button"><span>View on GitHub</span></a>
         </section>
 
         <hr>
 
         <section id="main_content">
-          <h1>
-<a id="assertjs" class="anchor" href="#assertjs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AssertJS</h1>
+            <p>
+                In order to make sure that state is always consistent and predictable you can use strongly typed
+                language or write unit tests. AssertJS stands between those choices. It can be used inside of unit tests
+                as well as inside of application model.
+            </p>
+        </section>
+        <section>
+            <h2>Installation</h2>
+            <pre><code class="language-javascript">npm install assert-js --save</code></pre>
+        </section>
+        <section>
+            <h2>Usage</h2>
 
-<p>This library was made to simplify variable types/values assertion.
-In order to make sure that state is always consistent and predictable you can use strongly typed language
-or write unit tests. AssertJS stands between those choices, just remember to assert all arguments.</p>
+            <pre><code class="language-javascript">var Assert = require('assert-js');</code></pre>
+
+        </section>
+
+        <section>
+            <h2>Available assertions</h2>
+
+            <pre><code class="language-javascript">Assert.instanceOf(new String("test"), String);</code></pre>
+            <pre><code class="language-javascript">Assert.containsOnly([new String("test"), new String("test")],String);</code></pre>
+            <pre><code class="language-javascript">Assert.integer(1);</code></pre>
+            <pre><code class="language-javascript">Assert.number(0.5);</code></pre>
+            <pre><code class="language-javascript">Assert.oddNumber(3);</code></pre>
+            <pre><code class="language-javascript">Assert.evenNumber(4);</code></pre>
+            <pre><code class="language-javascript">Assert.greaterThan(1, 10)</code></pre>
+            <pre><code class="language-javascript">Assert.greaterThanOrEqual(1, 1)</code></pre>
+            <pre><code class="language-javascript">Assert.lessThan(10, 5)</code></pre>
+            <pre><code class="language-javascript">Assert.lessThanOrEqual(1, 1)</code></pre>
+            <pre><code class="language-javascript">Assert.string("string");</code></pre>
+            <pre><code class="language-javascript">Assert.integer(true);</code></pre>
+            <pre><code class="language-javascript">Assert.object({id: 1});</code></pre>
+            <pre><code class="language-javascript">Assert.hasFunction("testFunction", {testFunction: () => { alert('test')' });</code></pre>
+            <pre><code class="language-javascript">Assert.isFunction(() => { alert('test'); });</code></pre>
+            <pre><code class="language-javascript">Assert.integer([1, 2, 3, 4, 5]);</code></pre>
+            <pre><code class="language-javascript">Assert.count(0, []);</code></pre>
+            <pre><code class="language-javascript">Assert.notEmpty(0, [1, 2, 3]);</code></pre>
+            <pre><code class="language-javascript">Assert.jsonString('{"key": "value"}');</code></pre>
+            <pre><code class="language-javascript">Assert.email('norbert@orzechowicz.pl');</code></pre>
+            <pre><code class="language-javascript">Assert.url('https://github.com/Tiliqua/assert-js');</code></pre>
+            <pre><code class="language-javascript">Assert.uuid('3e9009a0-4b2f-414e-bf02-ec0df56fc864');</code></pre>
+
+        </section>
+
+        <section>
+            <p>
+                <strong>Something is missing? Don't worry, AssertJS is Open Source project at MIT license. Feel free to contribute!</strong>
+            </p>
+        </section>
+
+        <section>
+            <h2>Custom exception message</h2>
+
+            <pre><code class="language-javascript">Assert.string(1234, 'custom error message');</code></pre>
+<pre><code class="language-javascript">Assert.string(1234, 'Expected ${expected} but got ${received}');
+// it throws "Expected string but got int[1234]"
+</code></pre>
+
         </section>
 
         <footer>
-          Assert.js  is maintained by <a href="https://github.com/Tiliqua">Tiliqua</a><br>
-          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+            Assert.js is maintained by <a href="https://github.com/Tiliqua">Tiliqua</a><br>
+            This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.
+            Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
         </footer>
-
-        
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>

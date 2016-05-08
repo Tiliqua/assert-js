@@ -1,6 +1,6 @@
 {
-  "name": "Assert.js ",
+  "name": "Assert.js",
   "tagline": "Assertion library for Javascript. ",
-  "body": "# AssertJS\r\n\r\nThis library was made to simplify variable types/values assertion.\r\nIn order to make sure that state is always consistent and predictable you can use strongly typed language\r\nor write unit tests. AssertJS stands between those choices, just remember to assert all arguments.\r\n",
+  "body": "This library was made to simplify variable types/values assertion.\r\nIn order to make sure that state is always consistent and predictable you can use strongly typed language\r\nor write unit tests. AssertJS stands between those choices, just remember to assert all arguments.\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
