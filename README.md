@@ -8,7 +8,8 @@ Assertion library written in ES6 for nodejs.
 
 This library was made to simplify variable types/values assertion and make testing easier.
 In order to make sure that state is always consistent and predictable you can use strongly typed language
-or write unit tests.
+or write unit tests. However you can cheat a bit by using libraries like this one. All you need to do is to 
+remember that check each argument with proper assertion.
 
 ## Installation
 
@@ -226,6 +227,33 @@ Assert.jsonString(value)
 
 var jsonStringValue = '{"key": "value"}';
 Assert.jsonString(jsonStringValue);
+```
+
+```js
+Assert.email(value)
+
+// example
+
+var emailValue = 'norbert@orzechowicz.pl';
+Assert.jsonString(emailValue);
+```
+
+```js
+Assert.url(value)
+
+// example
+
+var urlValue = 'https://github.com/Tiliqua/assert-js';
+Assert.url(urlValue);
+```
+
+```js
+Assert.uuid(value)
+
+// example
+
+var uuidValue = '3e9009a0-4b2f-414e-bf02-ec0df56fc864';
+Assert.uuid(uuidValue);
 ```
 
 ### Custom error messages
