@@ -37,7 +37,7 @@ var InvalidValueException = function () {
          * @returns {string}
          */
         value: function expected(type, value) {
-            var message = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             _Assert2.default.string(message);
 

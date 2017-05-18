@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -30,7 +30,7 @@ var Assert = function () {
          * @param {string} [message]
          */
         value: function instanceOf(objectValue, expectedInstance) {
-            var message = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             this.string(message, "Custom error message passed to Assert.instanceOf needs to be a valid string.");
 
@@ -53,7 +53,7 @@ var Assert = function () {
     }, {
         key: 'integer',
         value: function integer(integerValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(message, "Custom error message passed to Assert.integer needs to be a valid string.");
 
@@ -70,7 +70,7 @@ var Assert = function () {
     }, {
         key: 'number',
         value: function number(numberValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(message, "Custom error message passed to Assert.number needs to be a valid string.");
 
@@ -87,7 +87,7 @@ var Assert = function () {
     }, {
         key: 'string',
         value: function string(stringValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             if (typeof message !== "string") {
                 throw "Custom error message passed to Assert.string needs to be a valid string.";
@@ -106,12 +106,48 @@ var Assert = function () {
     }, {
         key: 'boolean',
         value: function boolean(booleanValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(message, "Custom error message passed to Assert.boolean needs to be a valid string.");
 
             if (typeof booleanValue !== 'boolean') {
                 throw _InvalidValueException2.default.expected("boolean", booleanValue, message);
+            }
+        }
+
+        /**
+         * @param {boolean} value
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'true',
+        value: function _true(value) {
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+
+            this.boolean(value);
+            this.string(message, "Custom error message passed to Assert.true needs to be a valid string.");
+
+            if (value !== true) {
+                throw _InvalidValueException2.default.expected("true", value, message);
+            }
+        }
+
+        /**
+         * @param {boolean} value
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'false',
+        value: function _false(value) {
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+
+            this.boolean(value);
+            this.string(message, "Custom error message passed to Assert.false needs to be a valid string.");
+
+            if (value !== false) {
+                throw _InvalidValueException2.default.expected("false", value, message);
             }
         }
 
@@ -123,7 +159,7 @@ var Assert = function () {
     }, {
         key: 'object',
         value: function object(objectValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(message, "Custom error message passed to Assert.object needs to be a valid string.");
 
@@ -141,7 +177,7 @@ var Assert = function () {
     }, {
         key: 'hasFunction',
         value: function hasFunction(expectedFunctionName, objectValue) {
-            var message = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             this.string(expectedFunctionName);
             this.object(objectValue);
@@ -160,7 +196,7 @@ var Assert = function () {
     }, {
         key: 'array',
         value: function array(arrayValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(message, "Custom error message passed to Assert.array needs to be a valid string.");
 
@@ -177,7 +213,7 @@ var Assert = function () {
     }, {
         key: 'isFunction',
         value: function isFunction(functionValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(message, "Custom error message passed to Assert.isFunction needs to be a valid string.");
 
@@ -195,7 +231,7 @@ var Assert = function () {
     }, {
         key: 'greaterThan',
         value: function greaterThan(expected, integerValue) {
-            var message = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             this.number(expected);
             this.number(integerValue);
@@ -215,7 +251,7 @@ var Assert = function () {
     }, {
         key: 'greaterThanOrEqual',
         value: function greaterThanOrEqual(expected, integerValue) {
-            var message = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             this.number(expected);
             this.number(integerValue);
@@ -235,7 +271,7 @@ var Assert = function () {
     }, {
         key: 'lessThan',
         value: function lessThan(expected, integerValue) {
-            var message = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             this.number(expected);
             this.number(integerValue);
@@ -255,7 +291,7 @@ var Assert = function () {
     }, {
         key: 'lessThanOrEqual',
         value: function lessThanOrEqual(expected, integerValue) {
-            var message = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             this.number(expected);
             this.number(integerValue);
@@ -275,7 +311,7 @@ var Assert = function () {
     }, {
         key: 'containsOnly',
         value: function containsOnly(arrayValue, expectedInstance) {
-            var message = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             this.array(arrayValue, "Assert.containsOnly require valid array, got \"${received}\".");
             this.string(message, "Custom error message passed to Assert.containsOnly needs to be a valid string.");
@@ -319,7 +355,7 @@ var Assert = function () {
     }, {
         key: 'count',
         value: function count(expectedCount, arrayValue) {
-            var message = arguments.length <= 2 || arguments[2] === undefined ? "" : arguments[2];
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             this.integer(expectedCount);
             this.array(arrayValue);
@@ -338,7 +374,7 @@ var Assert = function () {
     }, {
         key: 'notEmpty',
         value: function notEmpty(value) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(message, "Custom error message passed to Assert.empty needs to be a valid string.");
 
@@ -355,7 +391,7 @@ var Assert = function () {
     }, {
         key: 'oddNumber',
         value: function oddNumber(integerValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.integer(integerValue);
             this.string(message, "Custom error message passed to Assert.oddNumber needs to be a valid string.");
@@ -373,7 +409,7 @@ var Assert = function () {
     }, {
         key: 'evenNumber',
         value: function evenNumber(integerValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.integer(integerValue);
             this.string(message, "Custom error message passed to Assert.evenNumber needs to be a valid string.");
@@ -391,7 +427,7 @@ var Assert = function () {
     }, {
         key: 'jsonString',
         value: function jsonString(stringValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(stringValue);
             this.string(message, "Custom error message passed to Assert.jsonString needs to be a valid string.");
@@ -411,7 +447,7 @@ var Assert = function () {
     }, {
         key: 'email',
         value: function email(emailValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(emailValue);
             this.string(message, "Custom error message passed to Assert.jsonString needs to be a valid string.");
@@ -431,7 +467,7 @@ var Assert = function () {
     }, {
         key: 'url',
         value: function url(urlValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(urlValue);
             this.string(message, "Custom error message passed to Assert.jsonString needs to be a valid string.");
@@ -451,7 +487,7 @@ var Assert = function () {
     }, {
         key: 'uuid',
         value: function uuid(uuidValue) {
-            var message = arguments.length <= 1 || arguments[1] === undefined ? "" : arguments[1];
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             this.string(uuidValue);
             this.string(message, "Custom error message passed to Assert.jsonString needs to be a valid string.");
