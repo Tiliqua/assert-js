@@ -86,6 +86,34 @@ export default class Assert
     }
 
     /**
+     * @param {boolean} value
+     * @param {string} [message]
+     */
+    static true(value, message = "")
+    {
+        this.boolean(value);
+        this.string(message, "Custom error message passed to Assert.true needs to be a valid string.");
+
+        if (value !== true) {
+            throw InvalidValueException.expected("true", value, message);
+        }
+    }
+
+    /**
+     * @param {boolean} value
+     * @param {string} [message]
+     */
+    static false(value, message = "")
+    {
+        this.boolean(value);
+        this.string(message, "Custom error message passed to Assert.false needs to be a valid string.");
+
+        if (value !== false) {
+            throw InvalidValueException.expected("false", value, message);
+        }
+    }
+
+    /**
      * @param {object} objectValue
      * @param {string} [message]
      */

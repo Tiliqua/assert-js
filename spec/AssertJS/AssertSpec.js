@@ -88,6 +88,14 @@ describe("Assert", () => {
         expect(() => {Assert.boolean(() => {}, 'custom message')}).toThrow('custom message');
     });
 
+    it ("asserts true", () => {
+        Assert.true(true);
+    });
+
+    it ("asserts false", () => {
+        Assert.false(false);
+    });
+
     it ("asserts object", () => {
         Assert.object({});
         Assert.object(new String("test"));

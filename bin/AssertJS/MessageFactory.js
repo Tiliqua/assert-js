@@ -29,7 +29,7 @@ var MessageFactory = function () {
          * @param {object} [data]
          */
         value: function create(template) {
-            var data = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+            var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
             _Assert2.default.string(template);
             _Assert2.default.object(data);
