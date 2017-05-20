@@ -44,7 +44,7 @@
             <h3>NPM</h3>
             <pre><code class="language-javascript">npm install assert-js --save</code></pre>
             <h3>Browser</h3>
-            <pre><code class="language-html">&lt;script src="http://assert-js.com/release/0.6.0/assert.min.js" type="text/javascript"&gt;&lt;/script&gt;</code></pre>
+            <pre><code class="language-html">&lt;script src="http://assert-js.com/release/0.7.0/assert.min.js" type="text/javascript"&gt;&lt;/script&gt;</code></pre>
         </section>
         <section>
             <h2>Usage</h2>
@@ -56,7 +56,8 @@
 
         <section>
             <h2>Available assertions</h2>
-
+            <pre><code class="language-javascript">Assert.true(true);</code></pre>
+            <pre><code class="language-javascript">Assert.false(false);</code></pre>
             <pre><code class="language-javascript">Assert.instanceOf(new String("test"), String);</code></pre>
             <pre><code class="language-javascript">Assert.containsOnly([new String("test"), new String("test")],String);</code></pre>
             <pre><code class="language-javascript">Assert.integer(1);</code></pre>
@@ -93,7 +94,7 @@
 
             <pre><code class="language-javascript">Assert.string(1234, 'custom error message');</code></pre>
 <pre><code class="language-javascript">Assert.string(1234, 'Expected ${expected} but got ${received}');
-// it throws "Expected string but got int[1234]"
+// it throws Error("Expected string but got int[1234]")
 </code></pre>
 
         </section>
