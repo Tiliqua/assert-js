@@ -34,7 +34,7 @@ var InvalidValueException = function () {
          * @param {string} type
          * @param {*} value
          * @param {string} [message]
-         * @returns {string}
+         * @returns {Error}
          */
         value: function expected(type, value) {
             var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
@@ -42,10 +42,10 @@ var InvalidValueException = function () {
             _Assert2.default.string(message);
 
             if (message.length) {
-                return _MessageFactory2.default.create(message, { expected: type, received: _ValueConverter2.default.toString(value) });
+                return new Error(_MessageFactory2.default.create(message, { expected: type, received: _ValueConverter2.default.toString(value) }));
             }
 
-            return 'Expected ' + type + ' but got "' + _ValueConverter2.default.toString(value) + '".';
+            return new Error('Expected ' + type + ' but got "' + _ValueConverter2.default.toString(value) + '".');
         }
     }]);
 

@@ -336,7 +336,7 @@ export default class Assert
     static email(emailValue, message = "")
     {
         this.string(emailValue);
-        this.string(message, "Custom error message passed to Assert.jsonString needs to be a valid string.");
+        this.string(message, "Custom error message passed to Assert.email needs to be a valid string.");
 
         let regexp = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
 
@@ -352,7 +352,7 @@ export default class Assert
     static url(urlValue, message = "")
     {
         this.string(urlValue);
-        this.string(message, "Custom error message passed to Assert.jsonString needs to be a valid string.");
+        this.string(message, "Custom error message passed to Assert.url needs to be a valid string.");
 
         let regexp = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i;
 
@@ -368,7 +368,7 @@ export default class Assert
     static uuid(uuidValue, message = "")
     {
         this.string(uuidValue);
-        this.string(message, "Custom error message passed to Assert.jsonString needs to be a valid string.");
+        this.string(message, "Custom error message passed to Assert.uuid needs to be a valid string.");
 
         let regexp = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
