@@ -17,11 +17,6 @@ export default class Assert
             throw InvalidValueException.expected("object", objectValue, message);
         }
 
-        this.isFunction(
-            expectedInstance,
-            "Expected argument needs to be a valid class instead of that got \"${received}\". Most likely there is typo in class name or file with class is missing export declaration."
-        );
-
         if (!(objectValue instanceof expectedInstance)) {
             throw InvalidValueException.expected(
                 expectedInstance.name,

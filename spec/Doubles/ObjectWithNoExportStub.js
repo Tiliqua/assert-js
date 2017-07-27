@@ -1,6 +1,0 @@
-'use strict';
-
-class ObjectWithNoExportStub
-{
-    
-}
