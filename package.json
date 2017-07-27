@@ -1,11 +1,11 @@
 {
   "name": "assert-js",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "ES6 Javascript assert library ",
   "main": "bin/assert.js",
   "scripts": {
     "test": "mocha --reporter dot --compilers js:babel-core/register spec/AssertJS --recursive",
-    "buil": "node_modules/.bin/babel src --out-dir bin && node_modules/.bin/webpack --config webpack.config.js"
+    "build": "node_modules/.bin/babel src --out-dir bin && node_modules/.bin/webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
