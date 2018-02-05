@@ -1,10 +1,8 @@
 'use strict';
 
-import Assert from './Assert';
-
 const VALUE_NAME_REGEXP = /\${(.*?)}/g;
 
-export default class MessageFactory
+class MessageFactory
 {
     /**
      * @param {string} template
@@ -12,8 +10,13 @@ export default class MessageFactory
      */
     static create(template, data = {})
     {
-        Assert.string(template);
-        Assert.object(data);
+        if (typeof template !== 'string') {
+            throw new Error(`Expected string but got "${ValueConverter.toString(template)}".`);
+        }
+
+        if (typeof data !== 'object') {
+            throw new Error(`Expected string but got "${ValueConverter.toString(data)}".`);
+        }
 
         return template.replace(VALUE_NAME_REGEXP, function(placeholder, propertyName) {
             if (data.hasOwnProperty(propertyName)) {
@@ -24,3 +27,5 @@ export default class MessageFactory
         });
     }
 }
+
+module.exports = MessageFactory;

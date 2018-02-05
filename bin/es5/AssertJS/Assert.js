@@ -1,20 +1,12 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _InvalidValueException = require('./InvalidValueException');
-
-var _InvalidValueException2 = _interopRequireDefault(_InvalidValueException);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var InvalidValueException = require('./InvalidValueException');
 
 var Assert = function () {
     function Assert() {
@@ -35,11 +27,11 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.instanceOf needs to be a valid string.");
 
             if ((typeof objectValue === 'undefined' ? 'undefined' : _typeof(objectValue)) !== 'object') {
-                throw _InvalidValueException2.default.expected("object", objectValue, message);
+                throw InvalidValueException.expected("object", objectValue, message);
             }
 
             if (!(objectValue instanceof expectedInstance)) {
-                throw _InvalidValueException2.default.expected(expectedInstance.name, objectValue, message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\".");
+                throw InvalidValueException.expected(expectedInstance.name, objectValue, message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\".");
             }
         }
 
@@ -56,7 +48,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.integer needs to be a valid string.");
 
             if (!Number.isInteger(integerValue)) {
-                throw _InvalidValueException2.default.expected("integer", integerValue, message);
+                throw InvalidValueException.expected("integer", integerValue, message);
             }
         }
 
@@ -73,7 +65,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.number needs to be a valid string.");
 
             if (typeof numberValue !== 'number') {
-                throw _InvalidValueException2.default.expected("number", numberValue);
+                throw InvalidValueException.expected("number", numberValue);
             }
         }
 
@@ -92,7 +84,7 @@ var Assert = function () {
             }
 
             if (typeof stringValue !== "string") {
-                throw _InvalidValueException2.default.expected("string", stringValue, message);
+                throw InvalidValueException.expected("string", stringValue, message);
             }
         }
 
@@ -109,7 +101,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.boolean needs to be a valid string.");
 
             if (typeof booleanValue !== 'boolean') {
-                throw _InvalidValueException2.default.expected("boolean", booleanValue, message);
+                throw InvalidValueException.expected("boolean", booleanValue, message);
             }
         }
 
@@ -127,7 +119,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.true needs to be a valid string.");
 
             if (value !== true) {
-                throw _InvalidValueException2.default.expected("true", value, message);
+                throw InvalidValueException.expected("true", value, message);
             }
         }
 
@@ -145,7 +137,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.false needs to be a valid string.");
 
             if (value !== false) {
-                throw _InvalidValueException2.default.expected("false", value, message);
+                throw InvalidValueException.expected("false", value, message);
             }
         }
 
@@ -162,7 +154,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.object needs to be a valid string.");
 
             if ((typeof objectValue === 'undefined' ? 'undefined' : _typeof(objectValue)) !== 'object') {
-                throw _InvalidValueException2.default.expected("object", objectValue, message);
+                throw InvalidValueException.expected("object", objectValue, message);
             }
         }
 
@@ -182,7 +174,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.hasFunction needs to be a valid string.");
 
             if (typeof objectValue[expectedFunctionName] !== 'function') {
-                throw _InvalidValueException2.default.expected('object to has function "' + expectedFunctionName + '"', objectValue, message);
+                throw InvalidValueException.expected('object to has function "' + expectedFunctionName + '"', objectValue, message);
             }
         }
 
@@ -199,7 +191,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.array needs to be a valid string.");
 
             if (!Array.isArray(arrayValue)) {
-                throw _InvalidValueException2.default.expected("array", arrayValue, message);
+                throw InvalidValueException.expected("array", arrayValue, message);
             }
         }
 
@@ -216,7 +208,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.isFunction needs to be a valid string.");
 
             if (typeof functionValue !== 'function') {
-                throw _InvalidValueException2.default.expected("function", functionValue, message);
+                throw InvalidValueException.expected("function", functionValue, message);
             }
         }
 
@@ -325,7 +317,7 @@ var Assert = function () {
                     try {
                         this.instanceOf(element, expectedInstance, message);
                     } catch (error) {
-                        throw _InvalidValueException2.default.expected(expectedInstance.name, element, message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\".");
+                        throw InvalidValueException.expected(expectedInstance.name, element, message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\".");
                     }
                 }
             } catch (err) {
@@ -377,7 +369,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.empty needs to be a valid string.");
 
             if (value.length === 0) {
-                throw _InvalidValueException2.default.expected("not empty value", value, message);
+                throw InvalidValueException.expected("not empty value", value, message);
             }
         }
 
@@ -395,7 +387,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.oddNumber needs to be a valid string.");
 
             if (integerValue % 2 !== 1) {
-                throw _InvalidValueException2.default.expected("odd number", integerValue, message);
+                throw InvalidValueException.expected("odd number", integerValue, message);
             }
         }
 
@@ -413,7 +405,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.evenNumber needs to be a valid string.");
 
             if (integerValue % 2 !== 0) {
-                throw _InvalidValueException2.default.expected("even number", integerValue, message);
+                throw InvalidValueException.expected("even number", integerValue, message);
             }
         }
 
@@ -433,7 +425,7 @@ var Assert = function () {
             try {
                 JSON.parse(stringValue);
             } catch (e) {
-                throw _InvalidValueException2.default.expected("json string", stringValue, message);
+                throw InvalidValueException.expected("json string", stringValue, message);
             }
         }
 
@@ -453,7 +445,7 @@ var Assert = function () {
             var regexp = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
 
             if (!regexp.test(emailValue)) {
-                throw _InvalidValueException2.default.expected("valid email address", emailValue, message);
+                throw InvalidValueException.expected("valid email address", emailValue, message);
             }
         }
 
@@ -473,7 +465,7 @@ var Assert = function () {
             var regexp = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i;
 
             if (!regexp.test(urlValue)) {
-                throw _InvalidValueException2.default.expected("valid url", urlValue, message);
+                throw InvalidValueException.expected("valid url", urlValue, message);
             }
         }
 
@@ -493,7 +485,7 @@ var Assert = function () {
             var regexp = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
             if (!regexp.test(uuidValue)) {
-                throw _InvalidValueException2.default.expected("valid uuid", uuidValue, message);
+                throw InvalidValueException.expected("valid uuid", uuidValue, message);
             }
         }
     }]);
@@ -501,4 +493,4 @@ var Assert = function () {
     return Assert;
 }();
 
-exports.default = Assert;
+module.exports = Assert;

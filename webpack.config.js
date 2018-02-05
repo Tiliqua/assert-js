@@ -1,9 +1,9 @@
 var webpack = require('webpack');
 
 module.exports = {
-    entry: __dirname + "/bin/assert.js",
+    entry: __dirname + "/bin/es5/assert-js.js",
     output: {
-        filename: __dirname + "/bin/assert.min.js",
+        filename: __dirname + "/bin/es5/assert-js.min.js",
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({

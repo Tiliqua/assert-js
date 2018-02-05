@@ -1,5 +1,5 @@
 import expect from 'expect.js';
-import Assert from '../../src/AssertJS/Assert';
+import Assert from '../../bin/es6/assert-js';
 
 describe("Assert", () => {
 

@@ -1,6 +1,6 @@
 'use strict';
 
-export default class ValueConverter
+class ValueConverter
 {
     /**
      * @param {*} value
@@ -85,3 +85,5 @@ export default class ValueConverter
         throw `Unhandled type ${typeof value}`;
     }
 }
+
+module.exports = ValueConverter;

@@ -1,8 +1,8 @@
 'use strict';
 
-import InvalidValueException from './InvalidValueException';
+let InvalidValueException = require('./InvalidValueException');
 
-export default class Assert
+class Assert
 {
     /**
      * @param {object} objectValue
@@ -372,3 +372,5 @@ export default class Assert
         }
     }
 }
+
+module.exports = Assert;

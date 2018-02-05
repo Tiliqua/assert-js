@@ -2,10 +2,11 @@
   "name": "assert-js",
   "version": "0.10.0",
   "description": "ES6 Javascript assert library ",
-  "main": "bin/assert.js",
+  "main": "bin/es6/assert-js.js",
   "scripts": {
-    "test": "mocha --reporter dot --compilers js:babel-core/register spec/AssertJS --recursive",
-    "build": "node_modules/.bin/babel src --out-dir bin && node_modules/.bin/webpack --config webpack.config.js"
+    "test": "node_modules/.bin/madge src/ --circular && node_modules/.bin/mocha --reporter dot --compilers js:babel-core/register tests/AssertJS --recursive",
+    "build": "npm run test && node_modules/.bin/babel src --out-dir bin/es5 && node_modules/.bin/webpack --config webpack.config.js",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "babel-preset-es2015": "^6.24.1",
     "webpack": "^1.13.0",
     "expect.js": "^0.3.1",
-    "mocha": "^3.3.0"
+    "mocha": "^3.3.0",
+    "madge": "^3.0.1"
   }
 }
