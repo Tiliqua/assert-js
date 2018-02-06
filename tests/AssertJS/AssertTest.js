@@ -203,6 +203,16 @@ describe("Assert", () => {
         expect(() => {Assert.array(123, 'custom message')}).to.throwError(/custom message/);
     });
 
+    it ("asserts one of", () => {
+        Assert.oneOf(1, [2, 5, 6, 1]);
+        Assert.oneOf('a', ['b', 'a', 'c']);
+    });
+
+    it ("throws error when asserting that element is non of expected", () => {
+        expect(() => {Assert.oneOf('z', ['b', 'a', 'c'])}).to.throwError(/Expected one of "string\["b"\], string\["a"\], string\["c"\]" but got "string\["z"\]"./);
+        expect(() => {Assert.oneOf('z', ['b', 'a', 'c'], 'custom message')}).to.throwError(/custom message/);
+    });
+
     it ("asserts contains only specific instances in array", () => {
         Assert.containsOnly(
             [

@@ -264,6 +264,15 @@ Assert.array([1, 2, 3, 4, 5]);
 Asserts that value is valid array.
 
 ---
+
+```js
+Assert.oneOf(4, [1, 2, 3, 4, 5]);
+```
+
+Asserts that value is one of expected values.
+
+---
+ 
  
 ```js
 Assert.count(0, []);

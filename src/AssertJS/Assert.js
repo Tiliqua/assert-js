@@ -186,6 +186,29 @@ class Assert
     }
 
     /**
+     * @param {*} value
+     * @param {array} expectedElements
+     * @param {string} [message]
+     */
+    static oneOf(value, expectedElements, message = "")
+    {
+        this.string(message, "Custom error message passed to Assert.array needs to be a valid string.");
+        this.array(expectedElements);
+
+        let foundValue = expectedElements.find((expectedInstance) => {
+            return value === expectedInstance;
+        });
+
+        if (foundValue === undefined) {
+            throw InvalidValueException.expected(
+                expectedElements.map((elemenet) => {return ValueConverter.toString(elemenet); }).join(', '),
+                value,
+                message.length ? message : "Expected one of \"${expected}\" but got \"${received}\"."
+            );
+        }
+    }
+
+    /**
      * @param {function} functionValue
      * @param {string} [message]
      */
