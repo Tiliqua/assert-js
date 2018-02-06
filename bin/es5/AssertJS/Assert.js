@@ -235,6 +235,31 @@ var Assert = function () {
         }
 
         /**
+         * @param {*} value
+         * @param {array} expectedElements
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'oneOf',
+        value: function oneOf(value, expectedElements) {
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+            this.string(message, "Custom error message passed to Assert.array needs to be a valid string.");
+            this.array(expectedElements);
+
+            var foundValue = expectedElements.find(function (expectedInstance) {
+                return value === expectedInstance;
+            });
+
+            if (foundValue === undefined) {
+                throw InvalidValueException.expected(expectedElements.map(function (elemenet) {
+                    return ValueConverter.toString(elemenet);
+                }).join(', '), value, message.length ? message : "Expected one of \"${expected}\" but got \"${received}\".");
+            }
+        }
+
+        /**
          * @param {function} functionValue
          * @param {string} [message]
          */
