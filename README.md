@@ -29,7 +29,7 @@ function doSomethingWithHtmlElement(element)
 
 Now you are covered by the Assertion and you don't need to be worried that somebody might pass empty object {} to doSomethingWithHtmlElement.
  
-**doSomethingWithHtmlElement function was designed to work with HTMLElement, period!**
+**doSomethingWithHtmlElement function was designed to work with HTMLElement!**
 
 I know, this is totally against [Duck Typing](https://en.wikipedia.org/wiki/Duck_typing) concept. If you believe that 
 Duck Typing is what you need then this library will bring you no value, don't use it.  
