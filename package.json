@@ -2,7 +2,7 @@
   "name": "assert-js",
   "version": "0.11.0",
   "description": "ES6 Javascript assert library ",
-  "main": "bin/es6/assert-js.js",
+  "main": "bin/es5/assert-js.js",
   "scripts": {
     "test": "node_modules/.bin/madge src/ --circular && node_modules/.bin/mocha --reporter dot --compilers js:babel-core/register tests/AssertJS --recursive",
     "build": "npm run test && node_modules/.bin/babel src --out-dir bin/es5 && node_modules/.bin/webpack --config webpack.config.js",
