@@ -2,7 +2,6 @@
 
 Javascript simple assertion library with no dependencies. 
 
-### [Documentation Online](http://assert-js.com)
 ### License: MIT
 ### Status: [![Build Status](https://travis-ci.org/Tiliqua/assert-js.svg?branch=master)](https://travis-ci.org/Tiliqua/assert-js)
 
