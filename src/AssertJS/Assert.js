@@ -387,6 +387,28 @@ class Assert
             throw InvalidValueException.expected("valid uuid", uuidValue, message);
         }
     }
+
+    /**
+     * @param {string} selector
+     * @param {DocumentFragment} documentFragment
+     * @param {string} [message]
+     */
+    static hasElement(selector, documentFragment, message = "")
+    {
+        this.string(selector);
+
+        if (typeof DocumentFragment === 'undefined') {
+            this.hasFunction('querySelector', documentFragment);
+        } else {
+            this.instanceOf(documentFragment, DocumentFragment);
+        }
+
+        this.string(message, "Custom error message passed to Assert.hasProperty needs to be a valid string.");
+
+        if (null === documentFragment.querySelector(selector)) {
+            throw InvalidValueException.expected(`document fragment ${documentFragment} to has element under selector "${selector}"`, null, message);
+        }
+    }
 }
 
 module.exports = Assert;

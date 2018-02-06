@@ -1,4 +1,6 @@
 import expect from 'expect.js';
+import jsdom from 'jsdom';
+const { JSDOM } = jsdom;
 import Assert from '../../bin/es6/assert-js';
 
 describe("Assert", () => {
@@ -290,5 +292,17 @@ describe("Assert", () => {
     it ("throws error when uuid is not valid", () => {
         expect(() => {Assert.uuid('1234567890')}).to.throwError(/Expected valid uuid but got "string\["1234567890"\]"./);
         expect(() => {Assert.uuid('1234567890', "custom message")}).to.throwError(/custom message/);
+    });
+
+    it ("asserts that document element exists under selector", () => {
+        let dom = new JSDOM(`<body><div id="div"></div></body>`);
+
+        Assert.hasElement('#div', dom.window.document);
+    });
+
+    it ("throws exception when document element does not exists under selector", () => {
+        let dom = new JSDOM(`<body><div id="div"></div></body>`);
+
+        expect(() => {Assert.hasElement('#not-exists', dom.window.document)}).to.throwError();
     });
 });

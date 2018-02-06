@@ -179,6 +179,26 @@ var Assert = function () {
         }
 
         /**
+         * @param {string} expectedPropertyName
+         * @param {object} objectValue
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'hasProperty',
+        value: function hasProperty(expectedPropertyName, objectValue) {
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+            this.string(expectedPropertyName);
+            this.object(objectValue);
+            this.string(message, "Custom error message passed to Assert.hasProperty needs to be a valid string.");
+
+            if (typeof objectValue[expectedPropertyName] === 'undefined') {
+                throw InvalidValueException.expected('object to has property "' + expectedPropertyName + '"', objectValue, message);
+            }
+        }
+
+        /**
          * @param {array} arrayValue
          * @param {string} [message]
          */
@@ -486,6 +506,32 @@ var Assert = function () {
 
             if (!regexp.test(uuidValue)) {
                 throw InvalidValueException.expected("valid uuid", uuidValue, message);
+            }
+        }
+
+        /**
+         * @param {string} selector
+         * @param {DocumentFragment} documentFragment
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'hasElement',
+        value: function hasElement(selector, documentFragment) {
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+            this.string(selector);
+
+            if (typeof DocumentFragment === 'undefined') {
+                this.hasFunction('querySelector', documentFragment);
+            } else {
+                this.instanceOf(documentFragment, DocumentFragment);
+            }
+
+            this.string(message, "Custom error message passed to Assert.hasProperty needs to be a valid string.");
+
+            if (null === documentFragment.querySelector(selector)) {
+                throw InvalidValueException.expected('document fragment ' + documentFragment + ' to has element under selector "' + selector + '"', null, message);
             }
         }
     }]);

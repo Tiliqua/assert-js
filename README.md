@@ -69,6 +69,7 @@ Assert.jsonString('{"key": "value"}');
 Assert.email('norbert@orzechowicz.pl');
 Assert.url('https://github.com/Tiliqua/assert-js');
 Assert.uuid('3e9009a0-4b2f-414e-bf02-ec0df56fc864');
+Assert.hasElement('#div', window.document);
 ```
 
 ---
@@ -294,6 +295,22 @@ Assert.uuid('3e9009a0-4b2f-414e-bf02-ec0df56fc864');
 ```
 
 Asserts that string is valid UUID.
+
+---
+ 
+```js
+Assert.hasElement('#div', window.document);
+```
+
+Asserts that element existing in DocumentFragment under selector.
+
+Example:
+
+```js
+let dom = new JSDOM(`<body><div id="div"></div></body>`);
+
+Assert.hasElement('#div', dom.window.document);
+```
 
 ## Custom exception message
 
