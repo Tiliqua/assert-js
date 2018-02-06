@@ -396,13 +396,7 @@ class Assert
     static hasElement(selector, documentFragment, message = "")
     {
         this.string(selector);
-
-        if (typeof DocumentFragment === 'undefined') {
-            this.hasFunction('querySelector', documentFragment);
-        } else {
-            this.instanceOf(documentFragment, DocumentFragment);
-        }
-
+        this.hasFunction('querySelector', documentFragment);
         this.string(message, "Custom error message passed to Assert.hasProperty needs to be a valid string.");
 
         if (null === documentFragment.querySelector(selector)) {

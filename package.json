@@ -1,6 +1,6 @@
 {
   "name": "assert-js",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "ES6 Javascript assert library ",
   "main": "bin/es5/assert-js.js",
   "scripts": {

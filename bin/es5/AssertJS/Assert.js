@@ -521,13 +521,7 @@ var Assert = function () {
             var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             this.string(selector);
-
-            if (typeof DocumentFragment === 'undefined') {
-                this.hasFunction('querySelector', documentFragment);
-            } else {
-                this.instanceOf(documentFragment, DocumentFragment);
-            }
-
+            this.hasFunction('querySelector', documentFragment);
             this.string(message, "Custom error message passed to Assert.hasProperty needs to be a valid string.");
 
             if (null === documentFragment.querySelector(selector)) {
