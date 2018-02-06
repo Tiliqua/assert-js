@@ -218,7 +218,7 @@ Asserts that value is valid object.
 ---
  
 ```js
-Assert.hasFunction("testFunction", {testFunction: () => { alert('test')' });
+Assert.hasFunction("testFunction", {testFunction: () => { alert('test'); }});
 ```
 
 Asserts that object has function. 
