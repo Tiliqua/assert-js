@@ -46,6 +46,7 @@ let Assert = require('assert-js')
 Assert.true(true);
 Assert.false(false);
 Assert.instanceOf(new String("test"), String);
+Assert.instanceOneOf(new String("test"), [String, Number]);
 Assert.containsOnly([new String("test"), new String("test")],String);
 Assert.integer(1);
 Assert.number(0.5);
@@ -117,6 +118,21 @@ Example:
 ```js 
 let div = window.document.querySelector('#my-div');
 Assert.instanceOf(element, HTMLDivElement); 
+```
+
+---
+ 
+```js
+Assert.instanceOneOf(new String("test"), [String, Number]);
+```
+
+Asserts that value is an instance of at least one specific class.
+
+Example: 
+
+```js 
+let div = window.document.querySelector('#my-div');
+Assert.instanceOneOf(element, [HTMLDivElement, HTMLElement]); 
 ```
 
 ---

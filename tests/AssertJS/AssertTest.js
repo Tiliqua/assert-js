@@ -9,6 +9,10 @@ describe("Assert", () => {
         Assert.instanceOf(new String("string"), String);
     });
 
+    it("compares instance one of", () => {
+        Assert.instanceOneOf(new String("string"), [String, Number]);
+    });
+
     it ("throws error when asserting instance of non object", () => {
         expect(() => {Assert.instanceOf(1, String)}).to.throwError('Expected object but got "int[1]".');
         expect(() => {Assert.instanceOf(new Number(2), String)}).to.throwError(/Expected instance of "String" but got "Number:int\[2\]"./);
@@ -21,6 +25,11 @@ describe("Assert", () => {
     it ("throws error when compared different instances", () => {
         expect(() => {Assert.instanceOf(new Number(2), String)}).to.throwError(/Expected instance of "String" but got "Number:int\[2\]"./);
         expect(() => {Assert.instanceOf(new Number(2), String, "custom message")}).to.throwError(/custom message/);
+    });
+
+    it ("throws error when compared all different instances", () => {
+        expect(() => {Assert.instanceOneOf(new Number(2), [String, Array] )}).to.throwError(/Expected instance of "function\[function String\(\) { \[native code\] }\], function\[function Array\(\) { \[native code\] }\]" but got "Number:int\[2\]"./);
+        expect(() => {Assert.instanceOneOf(new Number(2), [String, Array], "custom message")}).to.throwError(/custom message/);
     });
 
     it ("asserts integers", () => {
@@ -294,15 +303,30 @@ describe("Assert", () => {
         expect(() => {Assert.uuid('1234567890', "custom message")}).to.throwError(/custom message/);
     });
 
-    it ("asserts that document element exists under selector", () => {
+    it ("asserts that document element exists under selector of HTMLDocument", () => {
         let dom = new JSDOM(`<body><div id="div"></div></body>`);
 
+        global.HTMLDocument = dom.window.HTMLDocument;
+        global.HTMLElement = dom.window.HTMLElement;
+
         Assert.hasElement('#div', dom.window.document);
+    });
+
+    it ("asserts that document element exists under selector of HTMLElement", () => {
+        let dom = new JSDOM(`<body><div id="div"></div></body>`);
+
+        global.HTMLDocument = dom.window.HTMLDocument;
+        global.HTMLElement = dom.window.HTMLElement;
+
+        Assert.hasElement('#div', dom.window.document.body);
     });
 
     it ("throws exception when document element does not exists under selector", () => {
         let dom = new JSDOM(`<body><div id="div"></div></body>`);
 
-        expect(() => {Assert.hasElement('#not-exists', dom.window.document)}).to.throwError();
+        global.HTMLDocument = dom.window.HTMLDocument;
+        global.HTMLElement = dom.window.HTMLElement;
+
+        expect(() => {Assert.hasElement('#not-exists', dom.window.document.body)}).to.throwError();
     });
 });

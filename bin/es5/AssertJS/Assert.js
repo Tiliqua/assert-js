@@ -7,6 +7,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var InvalidValueException = require('./InvalidValueException');
+var ValueConverter = require('./ValueConverter');
 
 var Assert = function () {
     function Assert() {
@@ -32,6 +33,24 @@ var Assert = function () {
 
             if (!(objectValue instanceof expectedInstance)) {
                 throw InvalidValueException.expected(expectedInstance.name, objectValue, message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\".");
+            }
+        }
+    }, {
+        key: 'instanceOneOf',
+        value: function instanceOneOf(objectValue, expectedInstances) {
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+            this.string(message, "Custom error message passed to Assert.instanceOf needs to be a valid string.");
+            this.array(expectedInstances);
+
+            var instance = expectedInstances.find(function (expectedInstance) {
+                return objectValue instanceof expectedInstance;
+            });
+
+            if (instance === undefined) {
+                throw InvalidValueException.expected(expectedInstances.map(function (instance) {
+                    return ValueConverter.toString(instance);
+                }).join(', '), objectValue, message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\".");
             }
         }
 
@@ -511,21 +530,21 @@ var Assert = function () {
 
         /**
          * @param {string} selector
-         * @param {DocumentFragment} documentFragment
+         * @param {HTMLElement} htmlElement
          * @param {string} [message]
          */
 
     }, {
         key: 'hasElement',
-        value: function hasElement(selector, documentFragment) {
+        value: function hasElement(selector, htmlElement) {
             var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
             this.string(selector);
-            this.hasFunction('querySelector', documentFragment);
+            this.instanceOneOf(htmlElement, [HTMLElement, HTMLDocument]);
             this.string(message, "Custom error message passed to Assert.hasProperty needs to be a valid string.");
 
-            if (null === documentFragment.querySelector(selector)) {
-                throw InvalidValueException.expected('document fragment ' + documentFragment + ' to has element under selector "' + selector + '"', null, message);
+            if (null === htmlElement.querySelector(selector)) {
+                throw InvalidValueException.expected('document fragment ' + htmlElement + ' to has element under selector "' + selector + '"', null, message);
             }
         }
     }]);

@@ -1,6 +1,7 @@
 'use strict';
 
 let InvalidValueException = require('./InvalidValueException');
+let ValueConverter = require('./ValueConverter');
 
 class Assert
 {
@@ -20,6 +21,24 @@ class Assert
         if (!(objectValue instanceof expectedInstance)) {
             throw InvalidValueException.expected(
                 expectedInstance.name,
+                objectValue,
+                message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\"."
+            );
+        }
+    }
+
+    static instanceOneOf(objectValue, expectedInstances, message = "")
+    {
+        this.string(message, "Custom error message passed to Assert.instanceOf needs to be a valid string.");
+        this.array(expectedInstances);
+
+        let instance = expectedInstances.find((expectedInstance) => {
+            return (objectValue instanceof expectedInstance)
+        });
+
+        if (instance === undefined) {
+            throw InvalidValueException.expected(
+                expectedInstances.map((instance) => {return ValueConverter.toString(instance); }).join(', '),
                 objectValue,
                 message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\"."
             );
@@ -390,17 +409,17 @@ class Assert
 
     /**
      * @param {string} selector
-     * @param {DocumentFragment} documentFragment
+     * @param {HTMLElement} htmlElement
      * @param {string} [message]
      */
-    static hasElement(selector, documentFragment, message = "")
+    static hasElement(selector, htmlElement, message = "")
     {
         this.string(selector);
-        this.hasFunction('querySelector', documentFragment);
+        this.instanceOneOf(htmlElement, [HTMLElement, HTMLDocument]);
         this.string(message, "Custom error message passed to Assert.hasProperty needs to be a valid string.");
 
-        if (null === documentFragment.querySelector(selector)) {
-            throw InvalidValueException.expected(`document fragment ${documentFragment} to has element under selector "${selector}"`, null, message);
+        if (null === htmlElement.querySelector(selector)) {
+            throw InvalidValueException.expected(`document fragment ${htmlElement} to has element under selector "${selector}"`, null, message);
         }
     }
 }
