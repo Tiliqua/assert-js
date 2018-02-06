@@ -60,6 +60,7 @@ Assert.string("string");
 Assert.boolean(true);
 Assert.object({id: 1});
 Assert.hasFunction("testFunction", {testFunction: () => { alert('test'); } });
+Assert.hasProperty("test", {test: 'value'});
 Assert.isFunction(() => { alert('test'); });
 Assert.array([1, 2, 3, 4, 5]);
 Assert.count(0, []);
@@ -221,6 +222,14 @@ Assert.hasFunction("testFunction", {testFunction: () => { alert('test')' });
 ```
 
 Asserts that object has function. 
+
+---
+ 
+```js
+Assert.hasProperty("test", {test: 'value'});
+```
+
+Asserts that object has property (it can also be a function). 
 
 ---
  

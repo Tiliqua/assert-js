@@ -116,6 +116,25 @@ describe("Assert", () => {
         expect(() => {Assert.hasFunction("test", new String("test"), "custom message")}).to.throwError(`custom message`);
     });
 
+    it ("asserts has property on anonymous object", () => {
+        Assert.hasProperty("test", {test: 'value'});
+    });
+
+    it ("asserts has property on object", () => {
+        class MyObject {
+            constructor()
+            {
+                this.test = 'test';
+            }
+        }
+        Assert.hasProperty("test", new MyObject());
+    });
+
+    it ("throws error when asserting that object has property that he does not have", () => {
+        expect(() => {Assert.hasProperty("test", new String("test"))}).to.throwError(`Expected object to has property "test" but got "String["test"]".`);
+        expect(() => {Assert.hasProperty("test", new String("test"), "custom message")}).to.throwError(`custom message`);
+    });
+
     it ("asserts function", () => {
         Assert.isFunction(() => {});
     });

@@ -138,6 +138,22 @@ class Assert
     }
 
     /**
+     * @param {string} expectedPropertyName
+     * @param {object} objectValue
+     * @param {string} [message]
+     */
+    static hasProperty(expectedPropertyName, objectValue, message = "")
+    {
+        this.string(expectedPropertyName);
+        this.object(objectValue);
+        this.string(message, "Custom error message passed to Assert.hasProperty needs to be a valid string.");
+
+        if (typeof objectValue[expectedPropertyName] === 'undefined') {
+            throw InvalidValueException.expected(`object to has property "${expectedPropertyName}"`, objectValue, message);
+        }
+    }
+
+    /**
      * @param {array} arrayValue
      * @param {string} [message]
      */
