@@ -1,7 +1,7 @@
 {
   "name": "assert-js",
   "version": "0.16.0",
-  "description": "ES6 Javascript assert library ",
+  "description": "Javascript simple assertion library with no dependencies.",
   "main": "bin/es5/assert-js.js",
   "scripts": {
     "test": "node_modules/.bin/madge src/ --circular && node_modules/.bin/mocha --reporter dot --compilers js:babel-core/register tests/AssertJS --recursive",
@@ -13,8 +13,11 @@
     "url": "git@github.com:Tiliqua/assert-js.git"
   },
   "keywords": [
-    "ES6",
-    "Assert"
+    "assertion",
+    "assert",
+    "assert-js",
+    "type hinting",
+    "es6"
   ],
   "author": "Norbert Orzechowicz <norbert@orzechowicz.pl>",
   "license": "MIT",
