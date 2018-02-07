@@ -48,6 +48,9 @@ Assert.false(false);
 Assert.instanceOf(new String("test"), String);
 Assert.instanceOneOf(new String("test"), [String, Number]);
 Assert.containsOnly([new String("test"), new String("test")],String);
+Assert.containsOnlyString(["test", "test1"]);
+Assert.containsOnlyInteger([1, 2]);
+Assert.containsOnlyNumber([2, 10.25]);
 Assert.integer(1);
 Assert.number(0.5);
 Assert.oddNumber(3);
@@ -142,6 +145,30 @@ Assert.containsOnly([new String("test"), new String("test")],String);
 ```
 
 Asserts that array contains only instances of specific class. 
+
+---
+ 
+```js
+Assert.containsOnlyString(["test", "test1"]);
+```
+
+Asserts that array contains only strings. 
+
+---
+ 
+```js
+Assert.containsOnlyInteger([1, 2]);
+```
+
+Asserts that array contains only integers.
+
+---
+ 
+```js
+Assert.containsOnlyNumber([2, 10.25]);
+```
+
+Asserts that array contains only numbers.
 
 ---
  

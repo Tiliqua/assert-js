@@ -124,7 +124,7 @@ describe("Assert", () => {
 
     it ("throws error when asserting that object has function that he does not have", () => {
         expect(() => {Assert.hasFunction("test", new String("test"))}).to.throwError(`Expected object to has function "test" but got "String["test"]".`);
-        expect(() => {Assert.hasFunction("test", new String("test"), "custom message")}).to.throwError(`custom message`);
+        expect(() => {Assert.hasFunction("test", new String("test"), "custom message")}).to.throwError(/custom message/);
     });
 
     it ("asserts has property on anonymous object", () => {
@@ -143,7 +143,28 @@ describe("Assert", () => {
 
     it ("throws error when asserting that object has property that he does not have", () => {
         expect(() => {Assert.hasProperty("test", new String("test"))}).to.throwError(`Expected object to has property "test" but got "String["test"]".`);
-        expect(() => {Assert.hasProperty("test", new String("test"), "custom message")}).to.throwError(`custom message`);
+        expect(() => {Assert.hasProperty("test", new String("test"), "custom message")}).to.throwError(/custom message/);
+    });
+
+    it ("asserts has properties on anonymous object", () => {
+        Assert.hasProperties(['test', 'foo', 'bar'], {test: 'value', foo: 'foo', bar: 'bar'});
+    });
+
+    it ("asserts has properties on object", () => {
+        class MyObject {
+            constructor()
+            {
+                this.test = 'test';
+                this.foo = 'for';
+                this.bar = 'bar';
+            }
+        }
+        Assert.hasProperties(['test', 'foo', 'bar'], new MyObject());
+    });
+
+    it ("throws error when asserting that object has properties that he does not have", () => {
+        expect(() => {Assert.hasProperties(["test", "foo"], new String("test"))}).to.throwError(/Expected object to has properties "test, foo" but got "String\["test"\]"./);
+        expect(() => {Assert.hasProperties(["test", "foo"], new String("test"), "custom message")}).to.throwError(/custom message/);
     });
 
     it ("asserts function", () => {
@@ -234,6 +255,33 @@ describe("Assert", () => {
 
     it ("throws error when contains only has at least one non expected instance element", () => {
         expect(() => {Assert.containsOnly([new String("test"), new Number(23)], String)}).to.throwError(/Expected instance of "String" but got "Number:int\[23\]"./);
+    });
+
+    it ("asserts contains only strings in array", () => {
+        Assert.containsOnlyString(["test", "test1"]);
+    });
+
+    it ("asserts contains only integers in array", () => {
+        Assert.containsOnlyInteger([1, 2]);
+    });
+
+    it ("asserts contains only numbers in array", () => {
+        Assert.containsOnlyNumber([2, 10.25]);
+    });
+
+    it ("throws error when contains only strings has at least one non string element", () => {
+        expect(() => {Assert.containsOnlyString([132, "test"])}).to.throwError(/Expected array of "string" but got "string\["int\[132\], string\["test"\]"\]"./);
+        expect(() => {Assert.containsOnlyString([132, "test"], 'custom message')}).to.throwError(/custom message/);
+    });
+
+    it ("throws error when contains only integers has at least one non integer element", () => {
+        expect(() => {Assert.containsOnlyInteger([132, "test"])}).to.throwError(/Expected array of "integer" but got "string\["int\[132\], string\["test"\]"\]"./);
+        expect(() => {Assert.containsOnlyInteger([132, "test"], 'custom message')}).to.throwError(/custom message/);
+    });
+
+    it ("throws error when contains only numbers has at least one non number element", () => {
+        expect(() => {Assert.containsOnlyNumber([132, "test"])}).to.throwError(/Expected array of "number" but got "string\["int\[132\], string\["test"\]"\]"./);
+        expect(() => {Assert.containsOnlyNumber([132, "test"], 'custom message')}).to.throwError(/custom message/);
     });
 
     it ("asserts array count", () => {

@@ -173,6 +173,24 @@ class Assert
     }
 
     /**
+     * @param {array} expectedProperties
+     * @param {object} objectValue
+     * @param {string} [message]
+     */
+    static hasProperties(expectedProperties, objectValue, message = "")
+    {
+        this.object(objectValue);
+        this.containsOnlyString(expectedProperties);
+        this.string(message, "Custom error message passed to Assert.hasProperties needs to be a valid string.");
+
+        expectedProperties.map((expectedProperty) => {
+            if (typeof objectValue[expectedProperty] === 'undefined') {
+                throw InvalidValueException.expected(`object to has properties "${expectedProperties.join(', ')}"`, objectValue, message);
+            }
+        });
+    }
+
+    /**
      * @param {array} arrayValue
      * @param {string} [message]
      */
@@ -303,6 +321,72 @@ class Assert
                     expectedInstance.name,
                     element,
                     message.length ? message : "Expected instance of \"${expected}\" but got \"${received}\"."
+                );
+            }
+        }
+    }
+
+    /**
+     * @param {array} arrayValue
+     * @param {string} [message]
+     */
+    static containsOnlyString(arrayValue, message = "")
+    {
+        this.array(arrayValue, "Assert.containsOnlyString require valid array, got \"${received}\".");
+        this.string(message, "Custom error message passed to Assert.containsOnly needs to be a valid string.");
+
+        for (let element of arrayValue) {
+            try {
+                this.string(element, message);
+            } catch (error) {
+                throw InvalidValueException.expected(
+                    'string',
+                    arrayValue.map((value) => { return ValueConverter.toString(value); }).join(', '),
+                    message.length ? message : "Expected array of \"${expected}\" but got \"${received}\"."
+                );
+            }
+        }
+    }
+
+    /**
+     * @param {array} arrayValue
+     * @param {string} [message]
+     */
+    static containsOnlyInteger(arrayValue, message = "")
+    {
+        this.array(arrayValue, "Assert.containsOnlyInteger require valid array, got \"${received}\".");
+        this.string(message, "Custom error message passed to Assert.containsOnly needs to be a valid string.");
+
+        for (let element of arrayValue) {
+            try {
+                this.integer(element, message);
+            } catch (error) {
+                throw InvalidValueException.expected(
+                    'integer',
+                    arrayValue.map((value) => { return ValueConverter.toString(value); }).join(', '),
+                    message.length ? message : "Expected array of \"${expected}\" but got \"${received}\"."
+                );
+            }
+        }
+    }
+
+    /**
+     * @param {array} arrayValue
+     * @param {string} [message]
+     */
+    static containsOnlyNumber(arrayValue, message = "")
+    {
+        this.array(arrayValue, "Assert.containsOnlyNumber require valid array, got \"${received}\".");
+        this.string(message, "Custom error message passed to Assert.containsOnly needs to be a valid string.");
+
+        for (let element of arrayValue) {
+            try {
+                this.number(element, message);
+            } catch (error) {
+                throw InvalidValueException.expected(
+                    'number',
+                    arrayValue.map((value) => { return ValueConverter.toString(value); }).join(', '),
+                    message.length ? message : "Expected array of \"${expected}\" but got \"${received}\"."
                 );
             }
         }
