@@ -218,6 +218,28 @@ var Assert = function () {
         }
 
         /**
+         * @param {array} expectedProperties
+         * @param {object} objectValue
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'hasProperties',
+        value: function hasProperties(expectedProperties, objectValue) {
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+            this.object(objectValue);
+            this.containsOnlyString(expectedProperties);
+            this.string(message, "Custom error message passed to Assert.hasProperties needs to be a valid string.");
+
+            expectedProperties.map(function (expectedProperty) {
+                if (typeof objectValue[expectedProperty] === 'undefined') {
+                    throw InvalidValueException.expected('object to has properties "' + expectedProperties.join(', ') + '"', objectValue, message);
+                }
+            });
+        }
+
+        /**
          * @param {array} arrayValue
          * @param {string} [message]
          */
@@ -395,6 +417,141 @@ var Assert = function () {
                 } finally {
                     if (_didIteratorError) {
                         throw _iteratorError;
+                    }
+                }
+            }
+        }
+
+        /**
+         * @param {array} arrayValue
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'containsOnlyString',
+        value: function containsOnlyString(arrayValue) {
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+
+            this.array(arrayValue, "Assert.containsOnlyString require valid array, got \"${received}\".");
+            this.string(message, "Custom error message passed to Assert.containsOnly needs to be a valid string.");
+
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = arrayValue[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var element = _step2.value;
+
+                    try {
+                        this.string(element, message);
+                    } catch (error) {
+                        throw InvalidValueException.expected('string', arrayValue.map(function (value) {
+                            return ValueConverter.toString(value);
+                        }).join(', '), message.length ? message : "Expected array of \"${expected}\" but got \"${received}\".");
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+        }
+
+        /**
+         * @param {array} arrayValue
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'containsOnlyInteger',
+        value: function containsOnlyInteger(arrayValue) {
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+
+            this.array(arrayValue, "Assert.containsOnlyInteger require valid array, got \"${received}\".");
+            this.string(message, "Custom error message passed to Assert.containsOnly needs to be a valid string.");
+
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = arrayValue[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var element = _step3.value;
+
+                    try {
+                        this.integer(element, message);
+                    } catch (error) {
+                        throw InvalidValueException.expected('integer', arrayValue.map(function (value) {
+                            return ValueConverter.toString(value);
+                        }).join(', '), message.length ? message : "Expected array of \"${expected}\" but got \"${received}\".");
+                    }
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+        }
+
+        /**
+         * @param {array} arrayValue
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'containsOnlyNumber',
+        value: function containsOnlyNumber(arrayValue) {
+            var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+
+            this.array(arrayValue, "Assert.containsOnlyNumber require valid array, got \"${received}\".");
+            this.string(message, "Custom error message passed to Assert.containsOnly needs to be a valid string.");
+
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
+
+            try {
+                for (var _iterator4 = arrayValue[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var element = _step4.value;
+
+                    try {
+                        this.number(element, message);
+                    } catch (error) {
+                        throw InvalidValueException.expected('number', arrayValue.map(function (value) {
+                            return ValueConverter.toString(value);
+                        }).join(', '), message.length ? message : "Expected array of \"${expected}\" but got \"${received}\".");
+                    }
+                }
+            } catch (err) {
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                        _iterator4.return();
+                    }
+                } finally {
+                    if (_didIteratorError4) {
+                        throw _iteratorError4;
                     }
                 }
             }
