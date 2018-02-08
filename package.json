@@ -1,6 +1,6 @@
 {
   "name": "assert-js",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "Javascript simple assertion library with no dependencies.",
   "main": "bin/es5/assert-js.js",
   "scripts": {

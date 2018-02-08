@@ -73,6 +73,7 @@ Assert.email('norbert@orzechowicz.pl');
 Assert.url('https://github.com/Tiliqua/assert-js');
 Assert.uuid('3e9009a0-4b2f-414e-bf02-ec0df56fc864');
 Assert.hasElement('#div', window.document);
+Assert.hasAttribute('data-test', window.document.querySelector('#test'));
 ```
 
 ---
@@ -353,7 +354,7 @@ Asserts that string is valid UUID.
 Assert.hasElement('#div', window.document);
 ```
 
-Asserts that element existing in DocumentFragment under selector.
+Asserts that element has other element under selector.
 
 Example:
 
@@ -362,6 +363,39 @@ let dom = new JSDOM(`<body><div id="div"></div></body>`);
 
 Assert.hasElement('#div', dom.window.document);
 ```
+
+---
+ 
+```js
+Assert.hasAttribute('data-test', window.document.querySelector('#div'));
+```
+
+Asserts that element has expected attribute (it might be empty).
+
+Example:
+
+```js
+let dom = new JSDOM(`<body><div id="div" data-test></div></body>`);
+
+Assert.hasAttribute('data-test', dom.window.document.querySelector('#div'));
+```
+
+---
+ 
+```js
+Assert.hasAttributes(['data-test', 'foo'], window.document.querySelector('#div'));
+```
+
+Asserts that element has expected attributes (it might be empty).
+
+Example:
+
+```js
+let dom = new JSDOM(`<body><div id="div" data-test></div></body>`);
+
+Assert.hasAttributes(['data-test','id'], dom.window.document.querySelector('#div'));
+```
+
 
 ## Custom exception message
 
@@ -379,3 +413,5 @@ you can also use variables `expected` and `received` in your messages.
 ```js
 Assert.string(1234, 'Expected ${expected} but got ${received}'); // it throws Error("Expected string but got int[1234]")
 ```
+
+

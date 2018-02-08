@@ -516,7 +516,7 @@ class Assert
 
     /**
      * @param {string} selector
-     * @param {HTMLElement} htmlElement
+     * @param {HTMLElement|HTMLDocument} htmlElement
      * @param {string} [message]
      */
     static hasElement(selector, htmlElement, message = "")
@@ -526,8 +526,46 @@ class Assert
         this.string(message, "Custom error message passed to Assert.hasProperty needs to be a valid string.");
 
         if (null === htmlElement.querySelector(selector)) {
-            throw InvalidValueException.expected(`document fragment ${htmlElement} to has element under selector "${selector}"`, null, message);
+            throw InvalidValueException.expected(`html element to has element under selector "${selector}"`, htmlElement.outerHTML, message);
         }
+    }
+
+    /**
+     * @param {string} attributeName
+     * @param {HTMLElement} htmlElement
+     * @param {string} [message]
+     */
+    static hasAttribute(attributeName, htmlElement, message = "")
+    {
+        this.string(attributeName);
+        this.instanceOf(htmlElement, HTMLElement);
+        this.string(message, "Custom error message passed to Assert.hasAttribute needs to be a valid string.");
+
+        let attribute = htmlElement.getAttribute(attributeName);
+
+        if (null ===  attribute) {
+            throw InvalidValueException.expected(`html element with attribute "${attributeName}"`, htmlElement.outerHTML, message);
+        }
+    }
+
+    /**
+     * @param {array} attributes
+     * @param {HTMLElement} htmlElement
+     * @param {string} [message]
+     */
+    static hasAttributes(attributes, htmlElement, message = "")
+    {
+        this.containsOnlyString(attributes);
+        this.instanceOf(htmlElement, HTMLElement);
+        this.string(message, "Custom error message passed to Assert.hasAttributes needs to be a valid string.");
+
+        attributes.map((attribute) => {
+            try {
+                this.hasAttribute(attribute, htmlElement)
+            } catch (e) {
+                throw InvalidValueException.expected(`html element with attributes "${attributes.join(', ')}"`, htmlElement.outerHTML, message);
+            }
+        })
     }
 }
 

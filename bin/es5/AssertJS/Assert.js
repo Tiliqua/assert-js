@@ -712,7 +712,7 @@ var Assert = function () {
 
         /**
          * @param {string} selector
-         * @param {HTMLElement} htmlElement
+         * @param {HTMLElement|HTMLDocument} htmlElement
          * @param {string} [message]
          */
 
@@ -726,8 +726,56 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.hasProperty needs to be a valid string.");
 
             if (null === htmlElement.querySelector(selector)) {
-                throw InvalidValueException.expected('document fragment ' + htmlElement + ' to has element under selector "' + selector + '"', null, message);
+                throw InvalidValueException.expected('html element to has element under selector "' + selector + '"', htmlElement.outerHTML, message);
             }
+        }
+
+        /**
+         * @param {string} attributeName
+         * @param {HTMLElement} htmlElement
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'hasAttribute',
+        value: function hasAttribute(attributeName, htmlElement) {
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+            this.string(attributeName);
+            this.instanceOf(htmlElement, HTMLElement);
+            this.string(message, "Custom error message passed to Assert.hasAttribute needs to be a valid string.");
+
+            var attribute = htmlElement.getAttribute(attributeName);
+
+            if (null === attribute) {
+                throw InvalidValueException.expected('html element with attribute "' + attributeName + '"', htmlElement.outerHTML, message);
+            }
+        }
+
+        /**
+         * @param {array} attributes
+         * @param {HTMLElement} htmlElement
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'hasAttributes',
+        value: function hasAttributes(attributes, htmlElement) {
+            var _this = this;
+
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+            this.containsOnlyString(attributes);
+            this.instanceOf(htmlElement, HTMLElement);
+            this.string(message, "Custom error message passed to Assert.hasAttributes needs to be a valid string.");
+
+            attributes.map(function (attribute) {
+                try {
+                    _this.hasAttribute(attribute, htmlElement);
+                } catch (e) {
+                    throw InvalidValueException.expected('html element with attributes "' + attributes.join(', ') + '"', htmlElement.outerHTML, message);
+                }
+            });
         }
     }]);
 

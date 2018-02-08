@@ -385,6 +385,46 @@ describe("Assert", () => {
         global.HTMLDocument = dom.window.HTMLDocument;
         global.HTMLElement = dom.window.HTMLElement;
 
-        expect(() => {Assert.hasElement('#not-exists', dom.window.document.body)}).to.throwError();
+        expect(() => {Assert.hasElement('#not-exists', dom.window.document.body)}).to.throwError(/Expected html element to has element under selector "#not-exists" but got "string\["<body><div id="div"><\/div><\/body>"\]"./);
+    });
+
+    it ("asserts that html element has data attribute", () => {
+        let dom = new JSDOM(`<div id="test" data-test></div>`);
+
+        global.HTMLElement = dom.window.HTMLElement;
+
+        Assert.hasAttribute('data-test', dom.window.document.querySelector('#test'));
+    });
+
+    it ("asserts that html element has attribute", () => {
+        let dom = new JSDOM(`<div id="test"></div>`);
+
+        global.HTMLElement = dom.window.HTMLElement;
+
+        Assert.hasAttribute('id', dom.window.document.querySelector('#test'));
+    });
+
+    it ("throws exception when html element does not have data attribute", () => {
+        let dom = new JSDOM(`<div id="test" data-test></div>`);
+
+        global.HTMLElement = dom.window.HTMLElement;
+
+        expect(() => {Assert.hasAttribute('data-foo', dom.window.document.querySelector('#test'))}).to.throwError(/Expected html element with attribute "data-foo" but got "string\["<div id="test" data-test=""><\/div>"\]"./);
+    });
+
+    it ("asserts that html element has multiple attributes", () => {
+        let dom = new JSDOM(`<div id="test" data-test></div>`);
+
+        global.HTMLElement = dom.window.HTMLElement;
+
+        Assert.hasAttributes(['id', 'data-test'], dom.window.document.querySelector('#test'));
+    });
+
+    it ("throws exception when html element does not have data attribute", () => {
+        let dom = new JSDOM(`<div id="test" data-test></div>`);
+
+        global.HTMLElement = dom.window.HTMLElement;
+
+        expect(() => {Assert.hasAttributes(['data-foo', 'bar'], dom.window.document.querySelector('#test'))}).to.throwError(/Expected html element with attributes "data-foo, bar" but got "string\["<div id="test" data-test=""><\/div>"\]"./);
     });
 });
