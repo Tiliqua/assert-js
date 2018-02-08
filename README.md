@@ -74,6 +74,7 @@ Assert.url('https://github.com/Tiliqua/assert-js');
 Assert.uuid('3e9009a0-4b2f-414e-bf02-ec0df56fc864');
 Assert.hasElement('#div', window.document);
 Assert.hasAttribute('data-test', window.document.querySelector('#test'));
+Assert.hasAttributes(['data-test', 'id'], window.document.querySelector('#test'));
 ```
 
 ---
