@@ -94,6 +94,20 @@ describe("Assert", () => {
         expect(() => {Assert.boolean(() => {}, 'custom message')}).to.throwError(/custom message/);
     });
 
+    it ("asserts equal values", () => {
+        Assert.equal(true, true);
+        Assert.equal(1, 1);
+        Assert.equal("string", "string");
+        Assert.equal({"object":1}, {"object":1});
+        Assert.equal({"object":{"nested":[1,2,3]}}, {"object":{"nested":[1,2,3]}});
+        Assert.equal([1,2,3], [1,2,3]);
+    });
+
+    it ("asserts throws error when values are not equal", () => {
+        expect(() => {Assert.equal(true, false)}).to.throwError(/Expected value boolean\[true\] to be equals boolean\[false\] but it\'s not\./);
+        expect(() => {Assert.equal({"object":{"nested":[1,2,3]}}, {"object":{"nested":[3,1,2]}})}).to.throwError(/Expected value object\[{"object":{"nested":\[1,2,3\]}}\] to be equals object\[{"object":{"nested":\[3,1,2\]}}] but it\'s not./);
+    });
+
     it ("asserts true", () => {
         Assert.true(true);
     });

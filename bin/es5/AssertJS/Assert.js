@@ -161,6 +161,50 @@ var Assert = function () {
         }
 
         /**
+         * @param value
+         * @param expectedValue
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'equal',
+        value: function equal(value, expectedValue) {
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+            if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) !== 'object') {
+                this.true(value === expectedValue, message ? message : 'Expected value ' + ValueConverter.toString(value) + ' to be equals ' + ValueConverter.toString(expectedValue) + ' but it\'s not.');
+            } else {
+                this.objectEqual(value, expectedValue, message ? message : 'Expected value ' + ValueConverter.toString(value) + ' to be equals ' + ValueConverter.toString(expectedValue) + ' but it\'s not.');
+            }
+        }
+
+        /**
+         * @param {object} object
+         * @param {object} expectedObject
+         * @param {string} [message]
+         */
+
+    }, {
+        key: 'objectEqual',
+        value: function objectEqual(object, expectedObject) {
+            var _this = this;
+
+            var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+            this.object(object, message);
+            this.object(expectedObject, message);
+
+            var objectProperties = Object.getOwnPropertyNames(object);
+            var expectedObjectProperties = Object.getOwnPropertyNames(expectedObject);
+
+            this.true(objectProperties.length === expectedObjectProperties.length, message ? message : 'Expected object ' + ValueConverter.toString(object) + ' to be equals ' + ValueConverter.toString(expectedObject) + ' but it\'s not.');
+
+            objectProperties.forEach(function (objectProperty) {
+                _this.equal(object[objectProperty], expectedObject[objectProperty], message ? message : 'Expected object ' + ValueConverter.toString(object) + ' to be equals ' + ValueConverter.toString(expectedObject) + ' but it\'s not.');
+            });
+        }
+
+        /**
          * @param {object} objectValue
          * @param {string} [message]
          */
@@ -761,7 +805,7 @@ var Assert = function () {
     }, {
         key: 'hasAttributes',
         value: function hasAttributes(attributes, htmlElement) {
-            var _this = this;
+            var _this2 = this;
 
             var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
@@ -771,7 +815,7 @@ var Assert = function () {
 
             attributes.map(function (attribute) {
                 try {
-                    _this.hasAttribute(attribute, htmlElement);
+                    _this2.hasAttribute(attribute, htmlElement);
                 } catch (e) {
                     throw InvalidValueException.expected('html element with attributes "' + attributes.join(', ') + '"', htmlElement.outerHTML, message);
                 }

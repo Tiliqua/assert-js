@@ -128,6 +128,40 @@ class Assert
     }
 
     /**
+     * @param value
+     * @param expectedValue
+     * @param {string} [message]
+     */
+    static equal(value, expectedValue, message = "")
+    {
+        if (typeof value !== 'object') {
+            this.true(value === expectedValue, message ? message : `Expected value ${ValueConverter.toString(value)} to be equals ${ValueConverter.toString(expectedValue)} but it's not.`);
+        } else {
+            this.objectEqual(value, expectedValue, message ? message : `Expected value ${ValueConverter.toString(value)} to be equals ${ValueConverter.toString(expectedValue)} but it's not.`);
+        }
+    }
+
+    /**
+     * @param {object} object
+     * @param {object} expectedObject
+     * @param {string} [message]
+     */
+    static objectEqual(object, expectedObject, message = "")
+    {
+        this.object(object, message);
+        this.object(expectedObject, message);
+
+        let objectProperties = Object.getOwnPropertyNames(object);
+        let expectedObjectProperties = Object.getOwnPropertyNames(expectedObject);
+
+        this.true(objectProperties.length === expectedObjectProperties.length, message ? message : `Expected object ${ValueConverter.toString(object)} to be equals ${ValueConverter.toString(expectedObject)} but it's not.`);
+
+        objectProperties.forEach((objectProperty) => {
+            this.equal(object[objectProperty], expectedObject[objectProperty], message ? message : `Expected object ${ValueConverter.toString(object)} to be equals ${ValueConverter.toString(expectedObject)} but it's not.`);
+        });
+    }
+
+    /**
      * @param {object} objectValue
      * @param {string} [message]
      */
