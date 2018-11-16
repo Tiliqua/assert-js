@@ -99,7 +99,7 @@ var Assert = function () {
             var message = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
 
             if (typeof message !== "string") {
-                throw "Custom error message passed to Assert.string needs to be a valid string.";
+                throw new Error("Custom error message passed to Assert.string needs to be a valid string.");
             }
 
             if (typeof stringValue !== "string") {
@@ -358,7 +358,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.greaterThan needs to be a valid string.");
 
             if (integerValue <= expected) {
-                throw message.length > 0 ? message : 'Expected value ' + integerValue + ' to be greater than ' + expected;
+                throw new Error(message.length > 0 ? message : 'Expected value ' + integerValue + ' to be greater than ' + expected);
             }
         }
 
@@ -378,7 +378,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.greaterThanOrEqual needs to be a valid string.");
 
             if (integerValue < expected) {
-                throw message.length > 0 ? message : 'Expected value ' + integerValue + ' to be greater than ' + expected + ' or equal';
+                throw new Error(message.length > 0 ? message : 'Expected value ' + integerValue + ' to be greater than ' + expected + ' or equal');
             }
         }
 
@@ -398,7 +398,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.lessThan needs to be a valid string.");
 
             if (integerValue >= expected) {
-                throw message.length > 0 ? message : 'Expected value ' + integerValue + ' to be less than ' + expected;
+                throw new Error(message.length > 0 ? message : 'Expected value ' + integerValue + ' to be less than ' + expected);
             }
         }
 
@@ -418,7 +418,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.lessThanOrEqual needs to be a valid string.");
 
             if (integerValue > expected) {
-                throw message.length > 0 ? message : 'Expected value ' + integerValue + ' to be less than ' + expected + ' or equal';
+                throw new Error(message.length > 0 ? message : 'Expected value ' + integerValue + ' to be less than ' + expected + ' or equal');
             }
         }
 
@@ -617,7 +617,7 @@ var Assert = function () {
             this.string(message, "Custom error message passed to Assert.count needs to be a valid string.");
 
             if (arrayValue.length !== expectedCount) {
-                throw message.length ? message : 'Expected count ' + expectedCount + ', got ' + arrayValue.length;
+                throw new Error(message.length ? message : 'Expected count ' + expectedCount + ', got ' + arrayValue.length);
             }
         }
 
