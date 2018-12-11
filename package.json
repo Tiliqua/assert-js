@@ -1,6 +1,6 @@
 {
   "name": "assert-js",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "description": "Javascript simple assertion library with no dependencies.",
   "main": "bin/es5/assert-js.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "expect.js": "^0.3.1",
     "jsdom": "^11.6.2",
     "madge": "^3.2.0",
-    "mocha": "^3.3.0",
+    "mocha": "^5.2.0",
     "webpack": "^1.13.0"
   }
 }
