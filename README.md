@@ -77,6 +77,7 @@ Assert.uuid('3e9009a0-4b2f-414e-bf02-ec0df56fc864');
 Assert.hasElement('#div', window.document);
 Assert.hasAttribute('data-test', window.document.querySelector('#test'));
 Assert.hasAttributes(['data-test', 'id'], window.document.querySelector('#test'));
+Assert.throws(() => { throw new Error('some relevant error message'); }, new Error('some relevant error message'));
 ```
 
 ---
@@ -415,6 +416,23 @@ let dom = new JSDOM(`<body><div id="div" data-test></div></body>`);
 Assert.hasAttributes(['data-test','id'], dom.window.document.querySelector('#div'));
 ```
 
+---
+
+```js
+Assert.throws(() => { throw new Error('some relevant error message'); }, new Error('some relevant error message'));
+```
+
+Asserts that function throws expected exception. 
+
+Example:
+
+```js
+Assert.throws(() => { throw new String('expected message'); }, new String('expected message'));
+Assert.throws(() => { throw 'expected message'; }, 'expected message');
+Assert.throws(() => { throw new Error(); });
+Assert.throws(() => { throw new Error('some not relevant error message'); }, new Error());
+Assert.throws(() => { throw new Error('some relevant error message'); }, new Error('some relevant error message'));
+```
 
 ## Custom exception message
 
@@ -432,5 +450,3 @@ you can also use variables `expected` and `received` in your messages.
 ```js
 Assert.string(1234, 'Expected ${expected} but got ${received}'); // it throws Error("Expected string but got int[1234]")
 ```
-
-

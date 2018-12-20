@@ -601,6 +601,38 @@ class Assert
             }
         })
     }
+
+    /**
+     * @param {function} callback
+     * @param {object} [expectedError]
+     */
+    static throws(callback, expectedError = new Error())
+    {
+        this.isFunction(callback);
+
+        try {
+            callback();
+        } catch (error) {
+            if (typeof error === 'object' && error instanceof Error && typeof expectedError === 'object' && expectedError instanceof Error) {
+
+                if (expectedError.message.length) {
+                    this.equal(error.message, expectedError.message, `Expected exception message "${error.message}" to be equals "${expectedError.message}" but it's not.`);
+                }
+
+                return ;
+            }
+
+            this.equal(error, expectedError, `Expected error of type ${ValueConverter.toString(error)} to be equals ${ValueConverter.toString(expectedError)} but it's not.`);
+
+            return ;
+        }
+
+        throw InvalidValueException.expected(
+            ValueConverter.toString(expectedError),
+            null,
+            "Expected from callback to throw an Error \"${expected}\" but it didn't."
+        );
+    }
 }
 
 module.exports = Assert;

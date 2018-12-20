@@ -444,4 +444,44 @@ describe("Assert", () => {
 
         expect(() => {Assert.hasAttributes(['data-foo', 'bar'], dom.window.document.querySelector('#test'))}).to.throwError(/Expected html element with attributes "data-foo, bar" but got "string\["<div id="test" data-test=""><\/div>"\]"./);
     });
+
+    it ("throws exception when callback is not throwing expected exception", () => {
+        expect(() => {
+            Assert.throws(() => {
+                // do nothing
+            }, new Error('Expected error message'));
+        }).to.throwError(/Expected from callback to throw an Error "object\[{}\]" but it didn't\./);
+    });
+
+    it ("throws exception when callback is not throwing expected exception type", () => {
+        expect(() => {
+            Assert.throws(() => {
+                throw 'test';
+            }, new Error('test'));
+        }).to.throwError(/Expected error of type string\[\"test\"\] to be equals object\[{}\] but it\'s not\./);
+    });
+
+    it ("throws exception when error message is different than expected but type matches", () => {
+        expect(() => {
+            Assert.throws(() => {
+                throw new Error('unexpected message');
+            }, new Error('expected message'));
+        }).to.throwError(/Expected exception message "unexpected message" to be equals "expected message" but it\'s not./);
+    });
+
+    it ("throws exception when error type is different than expected error type", () => {
+        expect(() => {
+            Assert.throws(() => {
+                throw new String('expected message');
+            }, new Error('expected message'));
+        }).to.throwError(/Expected error of type String\["expected message"\] to be equals object\[{}\] but it\'s not./);
+    });
+
+    it ("asserts that thrown errors are the same", () => {
+        Assert.throws(() => { throw new String('expected message'); }, new String('expected message'));
+        Assert.throws(() => { throw 'expected message'; }, 'expected message');
+        Assert.throws(() => { throw new Error(); });
+        Assert.throws(() => { throw new Error('some not relevant error message'); }, new Error());
+        Assert.throws(() => { throw new Error('some relevant error message'); }, new Error('some relevant error message'));
+    });
 });
