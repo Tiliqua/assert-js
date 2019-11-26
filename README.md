@@ -5,7 +5,7 @@ Javascript simple assertion library with no dependencies.
 ### License: MIT
 ### Status: [![Build Status](https://travis-ci.org/Tiliqua/assert-js.svg?branch=master)](https://travis-ci.org/Tiliqua/assert-js)
 
-| Why should I even use it?
+> Why should I use it?
 
 Answer depends on your aspirations. If your professional goal is to develop well designed, maintainable and regression free
 code, then my advice is to start doing more offensive programming.
