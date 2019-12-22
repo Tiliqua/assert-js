@@ -1,16 +1,8 @@
 # AssertJS
 
-Javascript simple assertion library with no dependencies.
+Javascript, battle tested, simple assertion library with no dependencies. 
 
-### License: MIT
-### Status: [![Build Status](https://travis-ci.org/Tiliqua/assert-js.svg?branch=master)](https://travis-ci.org/Tiliqua/assert-js)
-
-> Why should I use it?
-
-Answer depends on your aspirations. If your professional goal is to develop well designed, maintainable and regression free
-code, then my advice is to start doing more offensive programming.
-Instead of allowing people using your code to pass anything into your functions, throw them an error and force them to deal
-with it. You are the architect, you design how your code should be used.
+Status: [![Build Status](https://travis-ci.org/Tiliqua/assert-js.svg?branch=master)](https://travis-ci.org/Tiliqua/assert-js)
 
 Example:
 
@@ -26,13 +18,8 @@ function doSomethingWithHtmlElement(element)
 }
 ```
 
-Now you are covered by the Assertion and you don't need to be worried that somebody might pass empty object {} to doSomethingWithHtmlElement.
-
-**doSomethingWithHtmlElement function was designed to work with HTMLElement!**
-
-I know, this is totally against [Duck Typing](https://en.wikipedia.org/wiki/Duck_typing) concept. If you believe that
-Duck Typing is what you need then this library will bring you no value, don't use it.
-
+Now you are covered by the Assertion, and you don't need to be worried that someone might pass empty object {} to doSomethingWithHtmlElement.
+`doSomethingWithHtmlElement` function was designed to accept only HTMLElement, nothing more!
 
 ## Usage
 

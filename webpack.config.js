@@ -2,15 +2,12 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: __dirname + "/bin/es5/assert-js.js",
+    mode: "production",
     output: {
-        filename: __dirname + "/bin/es5/assert-js.min.js",
+        filename: "assert-js.min.js",
+        path: __dirname + "/bin/es5/",
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            minimize: true,
-            output: {
-                comments: false
-            }
-        })
-    ]
+    optimization: {
+        minimize: true
+    }
 };
