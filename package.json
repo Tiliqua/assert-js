@@ -26,7 +26,6 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/register": "^7.7.7",
-    "expect.js": "^0.3.1",
     "jsdom": "15.2.1",
     "madge": "3.6.0",
     "mocha": "5.2.0",
