@@ -2,7 +2,13 @@
 
 Javascript, battle tested, simple assertion library with no dependencies. 
 
-Status: [![Build Status](https://travis-ci.org/Tiliqua/assert-js.svg?branch=master)](https://travis-ci.org/Tiliqua/assert-js)
+Status: 
+
+![npm bundle size](https://img.shields.io/bundlephobia/min/assert-js)
+![Hackage-Deps](https://img.shields.io/hackage-deps/v/assert-js)
+[![Build Status](https://travis-ci.org/Tiliqua/assert-js.svg?branch=master)](https://travis-ci.org/Tiliqua/assert-js)
+![NPM](https://img.shields.io/npm/l/assert-js)
+![npm](https://img.shields.io/npm/v/assert-js)
 
 Example:
 
