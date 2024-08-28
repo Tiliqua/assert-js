@@ -29,7 +29,7 @@
     "jsdom": "15.2.1",
     "madge": "3.6.0",
     "mocha": "5.2.0",
-    "webpack": "4.41.4",
+    "webpack": "5.94.0",
     "webpack-cli": "3.3.10"
   }
 }
